@@ -1,7 +1,5 @@
-# ✞ Welcome to Chirpd ✞
-## The Online Church Platform for Invocation, Respect, Prayer and Devotion 
-
-**Free Software for Churches: **Online Faith-Building Platform for Worshippers, Communities, and God
+# ✞ Welcome to Chirpd
+## The Online Church Platform for Invocation, Respect, Prayer and Devotion (DEV)
 
 ## About Our Project
 
@@ -65,7 +63,7 @@ Any of the commands can be run without the `&`. For example
 
 ## Bug tracker
 
-Have a bug? Please create an [issue](https://github.com/chirpd/chirpd/issues) here on GitHub that conforms with [necolas's guidelines](https://github.com/necolas/issue-guidelines).
+Have a bug? Please create an [issue](https://github.com/chirpd/chirpd/issues) here on GitHub
 
 ## Components
 
