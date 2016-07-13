@@ -26,7 +26,7 @@
 <xsl:param name="url-keywords" />
 
 <xsl:variable name="events-entries-per-page" select="'5'" />
-<xsl:variable name="member-is-logged-in" select="boolean(//events/member-login-info/@logged-in = 'yes')" />
+<xsl:variable name="memb3r-is-logged-in" select="boolean(//events/memb3r-login-info/@logged-in = 'yes')" />
 
 
 <xsl:template match="/">
