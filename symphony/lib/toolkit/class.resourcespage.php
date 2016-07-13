@@ -1,7 +1,7 @@
 <?php
 
 	/**
-	 * @package toolkit
+	 * @package, toolkit
 	 */
 	/**
 	 * The `ResourcesPage` abstract class controls the way "Datasource"
@@ -269,7 +269,7 @@
 			 *  in the With Selected menu. Options should follow the same format
 			 *  expected by `Widget::__SelectBuildOption`. Passed by reference.
 			 */
-			Symphony::ExtensionManager()->notifyMembers('AddCustomActions', $_REQUEST['symphony-page'], array(
+			Symphony::ExtensionManager()->notifymembers('AddCustomActions', $_REQUEST['symphony-page'], array(
 				'options' => &$options
 			));
 
@@ -309,7 +309,7 @@
 				 *  An array of the selected rows. The value is usually the ID of the
 				 *  the associated object.
 				 */
-				Symphony::ExtensionManager()->notifyMembers('CustomActions', $_REQUEST['symphony-page'], array(
+				Symphony::ExtensionManager()->notifymembers('CustomActions', $_REQUEST['symphony-page'], array(
 					'checked' => $checked
 				));
 

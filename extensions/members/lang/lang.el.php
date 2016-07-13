@@ -11,25 +11,25 @@
 	);
 
 	/**
-	 * Members
+	 * members
 	 */
 	$dictionary = array(
 
 		// Missing
 
-		'Member Roles' => 
+		'member Roles' => 
 		'Ρόλοι Μελών',
 
-		'Members Timezone' => 
+		'members Timezone' => 
 		'Ώρα Ζώνης Μελών',
 
-		'Members: Lock Role' => 
+		'members: Lock Role' => 
 		'Μέλη: Κλείδωμα Ρόλου',
 
-		'Members: Lock Activation' => 
+		'members: Lock Activation' => 
 		'Μέλη: Κλείδωμα Ενεργοποίησης',
 
-		'Members: Update Password' => 
+		'members: Update Password' => 
 		'Μέλη: Ανανέωση Συνθηματικού',
 
 		'Email Template Filter' => 
@@ -38,14 +38,14 @@
 		'Email Template Manager' => 
 		'Διαχείριση Προτύπων Email',
 
-		'Members' => 
+		'members' => 
 		'Μέλη',
 
-		'Active Members Section' => 
+		'Active members Section' => 
 		'Τμήμα Ενεργών Μελών',
 
-		'A Members section will at minimum contain either a Member: Email or a Member: Username field' => 
-		'Το Τμήμα μελών κατ\'ελάχιστο θα πρέπει να περιέχει είτε ένα πεδίο Μέλος: Email ή ένα πεδίο Member: Όνομα χρήστη',
+		'A members section will at minimum contain either a member: Email or a member: Username field' => 
+		'Το Τμήμα μελών κατ\'ελάχιστο θα πρέπει να περιέχει είτε ένα πεδίο Μέλος: Email ή ένα πεδίο member: Όνομα χρήστη',
 
 		'The page you have requested has restricted access permissions.' => 
 		'Η σελίδα που ζητήσατε είναι περιορισμένης πρόσβασης.',
@@ -62,22 +62,22 @@
 		'The Symphony configuration file, <code>/manifest/config.php</code>, is not writable. You will not be able to save changes to preferences.' => 
 		'Το αρχείο ρυθμίσεων του Symphony, <code>/mainfest/config.php</code>, δεν είναι εγγράψιμο. Δεν θα είσαστε σε θέση να αποθηκεύσετε τις αλλαγές στις προτιμήσεις.',
 
-		'There is no Member: Role field in the active Members section. <a href="%s%d/">Add Member: Role field?</a>' => 
+		'There is no member: Role field in the active members section. <a href="%s%d/">Add member: Role field?</a>' => 
 		'Δεν υπάρχει πεδίο Μέλος: Ρόλος στο ενεργό τμήμα Μελών. <a href="%s%d/">Να γίνει η προσθήκη του πεδίου Μέλος: Ρόλος;</a>',
 
 		'Create a Role' => 
 		'Δημιουργία ενός Ρόλου',
 
-		'No Member section has been specified in <a href="%s">Preferences</a>. Please do this first.' => 
+		'No member section has been specified in <a href="%s">Preferences</a>. Please do this first.' => 
 		'Δεν έχει οριστεί τμήμα για τα Μέλη στις <a href="%s">Προτιμήσεις</a>. Πηγαίνετε να το ορίσετε.',
 
 		'This is the role assumed by the general public.' => 
 		'Όλοι γενικά, στην αρχή τοποθετούντε σε αυτόν τον ρόλο.',
 
-		'Delete Members' => 
+		'Delete members' => 
 		'Διαγραφή Μελών',
 
-		'Move Members To' => 
+		'Move members To' => 
 		'Μετακίνηση Μελών Στο',
 
 		'The role you requested to edit does not exist.' => 
@@ -95,10 +95,10 @@
 		'An error occurred while processing this form. <a href="#error">See below for details.</a>' => 
 		'Παρουσιάστηκε κάποιο σφάλμα κατά την επεξεργασία αυτής της φόρμας. <a href="#error">Δείτε παρακάτω για λεπτομέρειες.</a>',
 
-		'Symphony &ndash; Member Roles' => 
+		'Symphony &ndash; member Roles' => 
 		'Symphony &ndash; Ρόλοι Μελών',
 
-		'Symphony &ndash; Member Roles &ndash; ' => 
+		'Symphony &ndash; member Roles &ndash; ' => 
 		'Symphony &ndash; Ρόλοι Μελών &ndash; ',
 
 		'Event Level Permissions' => 
@@ -164,10 +164,10 @@
 		'%s is a required field.' => 
 		'Το πεδίο %s απαιτείται.',
 
-		'Member not found.' => 
+		'member not found.' => 
 		'Το μέλος δεν βρέθηκε.',
 
-		'Member is already activated.' => 
+		'member is already activated.' => 
 		'Το μέλος είναι ήδη ενεργοποιημένο.',
 
 		'Activation error. Code was invalid or has expired.' => 
@@ -200,7 +200,7 @@
 		'Recovery code has expired.' => 
 		'Ο κωδικός ανάκτησης έληξε.',
 
-		'Member: Activation' => 
+		'member: Activation' => 
 		'Μέλος: Ενεργοποίηση',
 
 		'Activation Code Expiry' => 
@@ -209,7 +209,7 @@
 		'How long a member\'s activation code will be valid for before it expires' => 
 		'Για τι χρονικό διάστημα θα είναι έγκυρος ο κωδικός ενεργοποίησης για κάποιο μέλος',
 
-		'Role for Members who are awaiting activation' => 
+		'Role for members who are awaiting activation' => 
 		'Ρόλος για μέλη σε αναμονή ενεργοποίησης',
 
 		'%s Prevent unactivated members from logging in' => 
@@ -236,7 +236,7 @@
 		'Activated %s' => 
 		'Ενεροποιήθηκε %s',
 
-		'Member: Email' => 
+		'member: Email' => 
 		'Mέλος: Email',
 
 		'\'%s\' is a required field.' => 
@@ -248,7 +248,7 @@
 		'%s is already taken.' => 
 		'Το %s χρησιμοποιείται ήδη.',
 
-		'Member: Password' => 
+		'member: Password' => 
 		'Μέλος: Συνθηματικό',
 
 		'Weak' => 
@@ -299,25 +299,25 @@
 		'Confirm' => 
 		'Επιβεβαίωση',
 
-		'Member: Role' => 
+		'member: Role' => 
 		'Μέλος: Ρόλος',
 
-		'Default Member Role' => 
+		'Default member Role' => 
 		'Αρχικός Ρόλος Μελών',
 
-		'Member will assume the role <strong>%s</strong> when activated.' => 
+		'member will assume the role <strong>%s</strong> when activated.' => 
 		'Το μέλος θα τοποθετηθεί στον ρόλο <strong>%s</strong> όταν ενεργοποιηθεί.',
 
-		'Member: Timezone' => 
+		'member: Timezone' => 
 		'Μέλος: Ζώνη Ώρας',
 
 		'Available Zones' => 
 		'Διαθέσιμες Ζώνες',
 
-		'Member: Username' => 
+		'member: Username' => 
 		'Μέλος: Όνομα χρήστη',
 
-		'Member is not activated.' => 
+		'member is not activated.' => 
 		'Το μέλος δεν έχει ενεργοποιηθεί.',
 
 	);

@@ -1,7 +1,7 @@
 <?php
 
 	/**
-	 * @package toolkit
+	 * @package, toolkit
 	 */
 	/**
 	 * An entry is a combination of data that is stored in several Fields

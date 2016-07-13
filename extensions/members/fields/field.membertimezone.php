@@ -2,7 +2,7 @@
 
 	require_once(TOOLKIT . '/fields/field.select.php');
 
-	Class fieldMemberTimezone extends fieldSelect {
+	Class fieldmemberTimezone extends fieldSelect {
 
 	/*-------------------------------------------------------------------------
 		Definition:
@@ -10,7 +10,7 @@
 
 		public function __construct(){
 			parent::__construct();
-			$this->_name = __('Member: Timezone');
+			$this->_name = __('member: Timezone');
 			$this->_showassociation = false;
 		}
 
@@ -46,7 +46,7 @@
 		 * @return string
 		 *  ie. Africa/Asmara
 		 */
-		public function getMemberTimezone($member_id) {
+		public function getmemberTimezone($member_id) {
 			return Symphony::Database()->fetchVar('value', 0, sprintf("
 					SELECT `value`
 					FROM `tbl_entries_data_%d`
@@ -174,7 +174,7 @@
 
 			if($id === false) return false;
 
-			fieldMemberTimezone::createSettingsTable();
+			fieldmemberTimezone::createSettingsTable();
 
 			$fields = array(
 				'field_id' => $id

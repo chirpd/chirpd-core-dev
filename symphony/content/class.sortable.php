@@ -1,7 +1,7 @@
 <?php
 
 	/**
-	 * @package content
+	 * @package, content
 	 */
 	/**
 	 * This class handles sortable objects via the `$_REQUEST` parameters. `Sortable`

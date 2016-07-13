@@ -1,7 +1,7 @@
 <?php
 
 	/**
-	 * @package data-sources
+	 * @package, data-sources
 	 */
 	/**
 	 * The `DynamicXMLDatasource` allows a user to retrieve XML from an URL.

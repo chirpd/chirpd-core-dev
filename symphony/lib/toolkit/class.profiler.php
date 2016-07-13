@@ -1,7 +1,7 @@
 <?php
 
 	/**
-	 * @package toolkit
+	 * @package, toolkit
 	 */    
 	/**
 	 * The Profiler class tracks various performance metrics while a Symphony

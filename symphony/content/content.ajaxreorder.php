@@ -1,6 +1,6 @@
 <?php
 	/**
-	 * @package content
+	 * @package, content
 	 */
 	/**
 	 * The AjaxReorder page is used for reordering objects in the Symphony

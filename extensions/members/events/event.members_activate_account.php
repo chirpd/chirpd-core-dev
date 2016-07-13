@@ -3,18 +3,18 @@
 	if(!defined('__IN_SYMPHONY__')) die('<h2>Error</h2><p>You cannot directly access this file</p>');
 	require_once EXTENSIONS . '/members/lib/class.membersevent.php';
 
-	Class eventMembers_Activate_Account extends MembersEvent {
+	Class eventmembers_Activate_Account extends membersEvent {
 
 		const ROOTELEMENT = 'members-activate-account';
 
 		public static function about(){
 			return array(
-				'name' => 'Members: Activate Account',
+				'name' => 'members: Activate Account',
 				'author' => array(
 					'name' => 'Symphony CMS',
 					'website' => 'http://symphony-cms.com',
 					'email' => 'team@symphony-cms.com'),
-				'version' => 'Members 1.0',
+				'version' => 'members 1.0',
 				'release-date' => '2011-05-10'
 			);
 		}
@@ -25,13 +25,13 @@
 
 		public static function documentation(){
 			// Fetch all the Email Templates available and add to the end of the documentation
-			$templates = extension_Members::fetchEmailTemplates();
+			$templates = extension_members::fetchEmailTemplates();
 			$div = new XMLElement('div');
 
 			if(!empty($templates)) {
 				// Template
 				$label = new XMLElement('label', __('Activate Account Email Template'));
-				$activate_account_templates = extension_Members::setActiveTemplate($templates, 'activate-account-template');
+				$activate_account_templates = extension_members::setActiveTemplate($templates, 'activate-account-template');
 				$label->appendChild(Widget::Select('members[activate-account-template][]', $activate_account_templates, array('multiple' => 'multiple')));
 				$div->appendChild($label);
 			}
@@ -43,7 +43,7 @@
 			$label = new XMLElement('label');
 			$input = Widget::Input("members[auto-login]", 'yes', 'checkbox');
 
-			if (extension_Members::getSetting('activate-account-auto-login') == 'yes') {
+			if (extension_members::getSetting('activate-account-auto-login') == 'yes') {
 				$input->setAttribute('checked', 'checked');
 			}
 
@@ -55,7 +55,7 @@
 			$div->appendChild(Widget::Input('action[save]', __('Save Changes'), 'submit', array('accesskey' => 's')));
 
 			return '
-				<p>This event takes an activation code and an identifier for the Member (either Email or Username) to activate their account.
+				<p>This event takes an activation code and an identifier for the member (either Email or Username) to activate their account.
 				An activation code is available by outputting your Activation field in a Datasource after the registration event has executed.</p>
 				<h3>Example Front-end Form Markup</h3>
 				<p>This is an example of the form markup you can use on your front end. An input field
@@ -72,7 +72,7 @@
 				</code></pre>
 				<h3>More Information</h3>
 				<p>For further information about this event, including response and error XML, please refer to the
-				<a href="https://github.com/symphonycms/members/wiki/Members%3A-Activate-Account">wiki</a>.</p>
+				<a href="https://github.com/symphonycms/members/wiki/members%3A-Activate-Account">wiki</a>.</p>
 				' . $div->generate() . '
 			';
 		}
@@ -98,8 +98,8 @@
 			$this->addEmailTemplates('activate-account-template');
 
 			// Do sanity checks on the incoming data
-			$activation = extension_Members::getField('activation');
-			if(!$activation instanceof fieldMemberActivation) {
+			$activation = extension_members::getField('activation');
+			if(!$activation instanceof fieldmemberActivation) {
 				$result->setAttribute('result', 'error');
 				$result->appendChild(
 					new XMLElement('error', null, array(
@@ -111,8 +111,8 @@
 				return $result;
 			}
 
-			// Check that either a Member: Username or Member: Email field has been detected
-			$identity = SymphonyMember::setIdentityField($fields, false);
+			// Check that either a member: Username or member: Email field has been detected
+			$identity = Symphonymember::setIdentityField($fields, false);
 			if(!$identity instanceof Identity) {
 				$result->setAttribute('result', 'error');
 				$result->appendChild(
@@ -125,7 +125,7 @@
 				return $result;
 			}
 
-			// Ensure that the Member: Activation field has been provided
+			// Ensure that the member: Activation field has been provided
 			if(!isset($fields[$activation->get('element_name')]) or empty($fields[$activation->get('element_name')])) {
 				$result->setAttribute('result', 'error');
 				$result->appendChild(
@@ -143,13 +143,13 @@
 			}
 
 			// Check that a member exists first before proceeding.
-			$member_id = $identity->fetchMemberIDBy($fields[$identity->get('element_name')]);
+			$member_id = $identity->fetchmemberIDBy($fields[$identity->get('element_name')]);
 			if(is_null($member_id)) {
 				$result->setAttribute('result', 'error');
 				$result->appendChild(
 					new XMLElement($identity->get('element_name'), null, array(
 						'type' => 'invalid',
-						'message' => __('Member not found.'),
+						'message' => __('member not found.'),
 						'label' => $identity->get('label')
 					))
 				);
@@ -157,16 +157,16 @@
 				return $result;
 			}
 
-			// Retrieve Member's entry
+			// Retrieve member's entry
 			$driver = Symphony::ExtensionManager()->create('members');
-			$entry = $driver->getMemberDriver()->fetchMemberFromID($member_id);
+			$entry = $driver->getmemberDriver()->fetchmemberFromID($member_id);
 
 			if($entry->getData($activation->get('id'), true)->activated == 'yes') {
 				$result->setAttribute('result', 'error');
 				$result->appendChild(
 					new XMLElement($activation->get('element_name'), null, array(
 						'type' => 'invalid',
-						'message' => __('Member is already activated.'),
+						'message' => __('member is already activated.'),
 						'label' => $activation->get('label')
 					))
 				);
@@ -207,11 +207,11 @@
 
 			// Simulate an array to login with.
 			$data_fields = array_merge($fields, array(
-				extension_Members::getFieldHandle('authentication') => $entry->getData(extension_Members::getField('authentication')->get('id'), true)->password
+				extension_members::getFieldHandle('authentication') => $entry->getData(extension_members::getField('authentication')->get('id'), true)->password
 			));
 
 			// Only login if the Activation field allows auto login.
-			if(extension_Members::getSetting('activate-account-auto-login') == 'no' || $driver->getMemberDriver()->login($data_fields, true)) {
+			if(extension_members::getSetting('activate-account-auto-login') == 'no' || $driver->getmemberDriver()->login($data_fields, true)) {
 				// Trigger the EventFinalSaveFilter delegate. The Email Template Filter
 				// and Email Template Manager extensions use this delegate to send any
 				// emails attached to this event
@@ -225,7 +225,7 @@
 			}
 
 			// User didn't login, unknown error.
-			else if(extension_Members::getSetting('activate-account-auto-login') == 'yes') {
+			else if(extension_members::getSetting('activate-account-auto-login') == 'yes') {
 				if(isset($_REQUEST['redirect'])) redirect($_REQUEST['redirect']);
 
 				$result->setAttribute('result', 'error');

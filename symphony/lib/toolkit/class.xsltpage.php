@@ -1,7 +1,7 @@
 <?php
 
 	/**
-	 * @package toolkit
+	 * @package, toolkit
 	 */
 	/**
 	 * XSLTPage extends the Page class to provide an object representation

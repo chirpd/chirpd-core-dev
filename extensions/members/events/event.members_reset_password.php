@@ -3,18 +3,18 @@
 	if(!defined('__IN_SYMPHONY__')) die('<h2>Error</h2><p>You cannot directly access this file</p>');
 	require_once EXTENSIONS . '/members/lib/class.membersevent.php';
 
-	Class eventMembers_Reset_Password extends MembersEvent {
+	Class eventmembers_Reset_Password extends membersEvent {
 
 		const ROOTELEMENT = 'members-reset-password';
 
 		public static function about(){
 			return array(
-				'name' => 'Members: Reset Password',
+				'name' => 'members: Reset Password',
 				'author' => array(
 					'name' => 'Symphony CMS',
 					'website' => 'http://symphony-cms.com',
 					'email' => 'team@symphony-cms.com'),
-				'version' => 'Members 1.0',
+				'version' => 'members 1.0',
 				'release-date' => '2011-05-10'
 			);
 		}
@@ -25,13 +25,13 @@
 
 		public static function documentation(){
 			// Fetch all the Email Templates available and add to the end of the documentation
-			$templates = extension_Members::fetchEmailTemplates();
+			$templates = extension_members::fetchEmailTemplates();
 			$div = new XMLElement('div');
 
 			if(!empty($templates)) {
 				//Template
 				$label = new XMLElement('label', __('Reset Password Email Template'));
-				$reset_password_templates = extension_Members::setActiveTemplate($templates, 'reset-password-template');
+				$reset_password_templates = extension_members::setActiveTemplate($templates, 'reset-password-template');
 				$label->appendChild(Widget::Select('members[reset-password-template][]', $reset_password_templates, array('multiple' => 'multiple')));
 				$div->appendChild($label);
 			}
@@ -43,7 +43,7 @@
 			$label = new XMLElement('label');
 			$input = Widget::Input("members[auto-login]", 'yes', 'checkbox');
 
-			if (extension_Members::getSetting('reset-password-auto-login') == 'yes') {
+			if (extension_members::getSetting('reset-password-auto-login') == 'yes') {
 				$input->setAttribute('checked', 'checked');
 			}
 
@@ -57,7 +57,7 @@
 				<p>This event takes a recovery code and a new password for a member. Should the recovery code
 				be correct and the new password validate, the member\'s password is changed to their new password.<br />
 				A recovery code is available by outputting the
-				Member: Password field after the Member: Generate Recovery Code event has executed.</p>
+				member: Password field after the member: Generate Recovery Code event has executed.</p>
 				<h3>Example Front-end Form Markup</h3>
 				<p>This is an example of the form markup you can use on your front end. An input field
 				accepts the member\'s recovery code, either the member\'s email address or username and two password
@@ -76,7 +76,7 @@
 				</code></pre>
 				<h3>More Information</h3>
 				<p>For further information about this event, including response and error XML, please refer to the
-				<a href="https://github.com/symphonycms/members/wiki/Members%3A-Reset-Password">wiki</a>.</p>
+				<a href="https://github.com/symphonycms/members/wiki/members%3A-Reset-Password">wiki</a>.</p>
 				' . $div->generate() . '
 			';
 		}
@@ -103,8 +103,8 @@
 
 			// Check that there is a row with this recovery code and that they
 			// request a password reset
-			$auth = extension_Members::getField('authentication');
-			if(!$auth instanceof fieldMemberPassword) {
+			$auth = extension_members::getField('authentication');
+			if(!$auth instanceof fieldmemberPassword) {
 				$result->setAttribute('result', 'error');
 				$result->appendChild(
 					new XMLElement('error', null, array(
@@ -116,9 +116,9 @@
 				return $result;
 			}
 
-			// Check that either a Member: Username or Member: Email field
+			// Check that either a member: Username or member: Email field
 			// has been detected
-			$identity = SymphonyMember::setIdentityField($fields, false);
+			$identity = Symphonymember::setIdentityField($fields, false);
 			if(!$identity instanceof Identity) {
 				$result->setAttribute('result', 'error');
 				$result->appendChild(
@@ -131,7 +131,7 @@
 				return $result;
 			}
 
-			if(!isset($fields[extension_Members::getFieldHandle('authentication')]['recovery-code']) or empty($fields[extension_Members::getFieldHandle('authentication')]['recovery-code'])) {
+			if(!isset($fields[extension_members::getFieldHandle('authentication')]['recovery-code']) or empty($fields[extension_members::getFieldHandle('authentication')]['recovery-code'])) {
 				$result->setAttribute('result', 'error');
 				$result->appendChild(
 					new XMLElement($auth->get('element_name'), null, array(
@@ -150,7 +150,7 @@
 					FROM tbl_entries_data_%d
 					WHERE reset = 'yes'
 					AND `recovery-code` = '%s'
-				", $auth->get('id'), Symphony::Database()->cleanValue($fields[extension_Members::getFieldHandle('authentication')]['recovery-code'])
+				", $auth->get('id'), Symphony::Database()->cleanValue($fields[extension_members::getFieldHandle('authentication')]['recovery-code'])
 			));
 
 			if(empty($row)) {
@@ -164,20 +164,20 @@
 				);
 			}
 			else {
-				// Retrieve Member Entry record
+				// Retrieve member Entry record
 				$driver = Symphony::ExtensionManager()->create('members');
-				$entry = $driver->getMemberDriver()->fetchMemberFromID($row['entry_id']);
+				$entry = $driver->getmemberDriver()->fetchmemberFromID($row['entry_id']);
 
-				// Check that the given Identity data matches the Member that the
+				// Check that the given Identity data matches the member that the
 				// recovery code is for
-				$member_id = $identity->fetchMemberIDBy($fields[$identity->get('element_name')]);
+				$member_id = $identity->fetchmemberIDBy($fields[$identity->get('element_name')]);
 
 				if(!$entry instanceof Entry || $member_id != $row['entry_id']) {
 					$result->setAttribute('result', 'error');
 					$result->appendChild(
 						new XMLElement($identity->get('element_name'), null, array(
 							'type' => 'invalid',
-							'message' =>  __('Member not found.'),
+							'message' =>  __('member not found.'),
 							'label' => $identity->get('label')
 						))
 					);
@@ -243,13 +243,13 @@
 				// emails attached to this event
 				$this->notifyEventFinalSaveFilter($result, $fields, $post_values, $entry);
 
-				if(extension_Members::getSetting('reset-password-auto-login') == "yes") {
+				if(extension_members::getSetting('reset-password-auto-login') == "yes") {
 					// Instead of replicating the same logic, call the UpdatePasswordLogin which will
 					// handle relogging in the user.
-					$driver->getMemberDriver()->filter_UpdatePasswordLogin(array(
+					$driver->getmemberDriver()->filter_UpdatePasswordLogin(array(
 						'entry' => $entry,
 						'fields' => array(
-							extension_Members::getFieldHandle('authentication') => array(
+							extension_members::getFieldHandle('authentication') => array(
 								'password' => Symphony::Database()->cleanValue($fields[$auth->get('element_name')]['password'])
 							)
 						)

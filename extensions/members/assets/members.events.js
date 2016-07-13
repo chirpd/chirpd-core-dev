@@ -6,7 +6,7 @@ jQuery(document).ready(function() {
 		'An error occurred while processing this form.': false
 	});
 
-	Symphony.Members = {
+	Symphony.members = {
 		memberEventSave: function() {
 			jQuery.ajax({
 				type: 'post',
@@ -47,5 +47,5 @@ jQuery(document).ready(function() {
 	};
 
 	// Save our the Event's email preference
-	jQuery('form').on('submit', Symphony.Members.memberEventSave);
+	jQuery('form').on('submit', Symphony.members.memberEventSave);
 });

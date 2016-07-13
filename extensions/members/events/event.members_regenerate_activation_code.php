@@ -3,18 +3,18 @@
 	if(!defined('__IN_SYMPHONY__')) die('<h2>Error</h2><p>You cannot directly access this file</p>');
 	require_once EXTENSIONS . '/members/lib/class.membersevent.php';
 
-	Class eventMembers_Regenerate_Activation_Code extends MembersEvent {
+	Class eventmembers_Regenerate_Activation_Code extends membersEvent {
 
 		const ROOTELEMENT = 'members-regenerate-activation-code';
 
 		public static function about(){
 			return array(
-				'name' => 'Members: Regenerate Activation Code',
+				'name' => 'members: Regenerate Activation Code',
 				'author' => array(
 					'name' => 'Symphony CMS',
 					'website' => 'http://symphony-cms.com',
 					'email' => 'team@symphony-cms.com'),
-				'version' => 'Members 1.0',
+				'version' => 'members 1.0',
 				'release-date' => '2011-05-10'
 			);
 		}
@@ -25,12 +25,12 @@
 
 		public static function documentation(){
 			// Fetch all the Email Templates available and add to the end of the documentation
-			$templates = extension_Members::fetchEmailTemplates();
+			$templates = extension_members::fetchEmailTemplates();
 			$div = new XMLElement('div');
 
 			if(!empty($templates)) {
 				$label = new XMLElement('label', __('Regenerate Activation Code Email Template'));
-				$regenerate_activation_code_templates = extension_Members::setActiveTemplate($templates, 'regenerate-activation-code-template');
+				$regenerate_activation_code_templates = extension_members::setActiveTemplate($templates, 'regenerate-activation-code-template');
 				$label->appendChild(Widget::Select('members[regenerate-activation-code-template][]', $regenerate_activation_code_templates, array('multiple' => 'multiple')));
 				$div->appendChild($label);
 
@@ -40,7 +40,7 @@
 
 			return '
 				<p>This event will regenerate an activation code for a user and is useful if their current
-				activation code has expired. The activation code can be sent to a Member\'s email after
+				activation code has expired. The activation code can be sent to a member\'s email after
 				this event has executed.</p>
 				<h3>Example Front-end Form Markup</h3>
 				<p>This is an example of the form markup you can use on your front end. An input field
@@ -56,7 +56,7 @@
 				</code></pre>
 				<h3>More Information</h3>
 				<p>For further information about this event, including response and error XML, please refer to the
-				<a href="https://github.com/symphonycms/members/wiki/Members%3A-Regenerate-Activation-Code">wiki</a>.</p>
+				<a href="https://github.com/symphonycms/members/wiki/members%3A-Regenerate-Activation-Code">wiki</a>.</p>
 				' . $div->generate() . '
 			';
 		}
@@ -81,8 +81,8 @@
 			// Add any Email Templates for this event
 			$this->addEmailTemplates('regenerate-activation-code-template');
 
-			$activation = extension_Members::getField('activation');
-			if(!$activation instanceof fieldMemberActivation) {
+			$activation = extension_members::getField('activation');
+			if(!$activation instanceof fieldmemberActivation) {
 				$result->setAttribute('result', 'error');
 				$result->appendChild(
 					new XMLElement('error', null, array(
@@ -94,9 +94,9 @@
 				return $result;
 			}
 
-			// Check that either a Member: Username or Member: Password field
+			// Check that either a member: Username or member: Password field
 			// has been detected
-			$identity = SymphonyMember::setIdentityField($fields, false);
+			$identity = Symphonymember::setIdentityField($fields, false);
 			if(!$identity instanceof Identity) {
 				$result->setAttribute('result', 'error');
 				$result->appendChild(
@@ -126,14 +126,14 @@
 			$activation->purgeCodes();
 
 			// Check that a member exists first before proceeding.
-			$member_id = $identity->fetchMemberIDBy($fields[$identity->get('element_name')]);
+			$member_id = $identity->fetchmemberIDBy($fields[$identity->get('element_name')]);
 
 			if(is_null($member_id)) {
 				$result->setAttribute('result', 'error');
 				$result->appendChild(
 					new XMLElement($identity->get('element_name'), null, array(
 						'type' => 'invalid',
-						'message' => __('Member not found.'),
+						'message' => __('member not found.'),
 						'label' => $identity->get('label')
 					))
 				);
@@ -144,14 +144,14 @@
 			// Check that the current member isn't already activated. If they
 			// are, no point in regenerating the code.
 			$driver = Symphony::ExtensionManager()->create('members');
-			$entry = $driver->getMemberDriver()->fetchMemberFromID($member_id);
+			$entry = $driver->getmemberDriver()->fetchmemberFromID($member_id);
 
 			if($entry->getData($activation->get('id'), true)->activated == 'yes') {
 				$result->setAttribute('result', 'error');
 				$result->appendChild(
 					new XMLElement($activation->get('element_name'), null, array(
 						'type' => 'invalid',
-						'message' => __('Member is already activated.'),
+						'message' => __('member is already activated.'),
 						'label' => $activation->get('label')
 					))
 				);

@@ -1,5 +1,5 @@
 /**
- * @package assets
+ * @package, assets
  */
 
 /**

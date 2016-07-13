@@ -33,7 +33,7 @@
 		'Download ZIP' => 
 		'Скачать ZIP',
 
-		'Save (overwrite) install files or package entire site as a <code>.zip</code> archive for download.' => 
+		'Save (overwrite) install files or package, entire site as a <code>.zip</code> archive for download.' => 
 		'Сохранить (перезаписать) файлы установки в виде <code>.zip</code> архива для закачки.',
 
 		'An error occurred while trying to write the <code>install.sql</code> file. Check the file permissions.' => 

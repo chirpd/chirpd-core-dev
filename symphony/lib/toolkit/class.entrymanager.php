@@ -1,7 +1,7 @@
 <?php
 
 	/**
-	 * @package toolkit
+	 * @package, toolkit
 	 */
 	/**
 	 * The `EntryManager` is responsible for all `Entry` objects in Symphony.

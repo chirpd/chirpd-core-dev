@@ -1,7 +1,7 @@
 <?php
 
 	/**
-	 * @package textboxfield
+	 * @package, textboxfield
 	 */
 
 	if (!defined('__IN_SYMPHONY__')) die('<h2>Symphony Error</h2><p>You cannot directly access this file</p>');
@@ -412,7 +412,7 @@
 			$input->setAttribute('class', implode(' ', $classes));
 			$input->setAttribute('length', (integer)$this->get('text_length'));
 
-			Symphony::ExtensionManager()->notifyMembers(
+			Symphony::ExtensionManager()->notifymembers(
 				$delegate, '/backend/',
 				array(
 					'field'		=> $this,

@@ -1,6 +1,6 @@
 <?php
 	/**
-	 * @package email-gateways
+	 * @package, email-gateways
 	 */
 
 	require_once(TOOLKIT . '/class.emailgateway.php');

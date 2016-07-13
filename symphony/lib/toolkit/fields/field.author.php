@@ -1,7 +1,7 @@
 <?php
 
 	/**
-	 * @package toolkit
+	 * @package, toolkit
 	 */
 
 	require_once FACE . '/interface.exportablefield.php';

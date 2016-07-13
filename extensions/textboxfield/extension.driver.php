@@ -1,7 +1,7 @@
 <?php
 
 	/**
-	 * @package textboxfield
+	 * @package, textboxfield
 	 */
 
 	/**

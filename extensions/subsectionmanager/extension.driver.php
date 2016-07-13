@@ -1,7 +1,7 @@
 <?php
 
 	/**
-	 * @package subsectionmanager
+	 * @package, subsectionmanager
 	 */
 	/**
 	 * Subsection Manager Extension

@@ -1,7 +1,7 @@
 <?php
 
 	/**
-	 * @package toolkit
+	 * @package, toolkit
 	 */
 	/**
 	 * The ExtensionManager class is responsible for managing all extensions
@@ -568,7 +568,7 @@
 		 *		'delegate' => $delegate
 		 *	);
 		 */
-		public static function notifyMembers($delegate, $page, array $context=array()){
+		public static function notifymembers($delegate, $page, array $context=array()){
 			// Make sure $page is an array
 			if(!is_array($page)){
 				$page = array($page);

@@ -2,7 +2,7 @@
 
     require_once(EXTENSIONS . '/members/lib/class.identity.php');
 
-	Class fieldMemberEmail extends Identity {
+	Class fieldmemberEmail extends Identity {
 
 		protected static $validator = '/^\w(?:\.?[\w%+-]+)*@\w(?:[\w-]*\.)+?[a-z]{2,}$/i';
 
@@ -12,7 +12,7 @@
 
 		public function __construct(){
 			parent::__construct();
-			$this->_name = __('Member: Email');
+			$this->_name = __('member: Email');
 			$this->_required = true;
 			$this->set('required', 'yes');
 		}
@@ -53,7 +53,7 @@
 		Utilities:
 	-------------------------------------------------------------------------*/
 
-		public function fetchMemberIDBy($needle) {
+		public function fetchmemberIDBy($needle) {
 			if(is_array($needle)) {
 				extract($needle);
 			}
@@ -62,7 +62,7 @@
 			}
 
 			if(empty($email)) {
-				extension_Members::$_errors[$this->get('element_name')] = array(
+				extension_members::$_errors[$this->get('element_name')] = array(
 					'message' => __('\'%s\' is a required field.', array($this->get('label'))),
 					'type' => 'missing',
 					'label' => $this->get('label')
@@ -76,8 +76,8 @@
 			));
 
 			if(is_null($member_id)) {
-				extension_Members::$_errors[$this->get('element_name')] = array(
-					'message' => __("Member not found."),
+				extension_members::$_errors[$this->get('element_name')] = array(
+					'message' => __("member not found."),
 					'type' => 'invalid',
 					'label' => $this->get('label')
 				);
@@ -106,7 +106,7 @@
 
 			if($id === false) return false;
 
-			fieldMemberEmail::createSettingsTable();
+			fieldmemberEmail::createSettingsTable();
 
 			$fields = array(
 				'field_id' => $id
@@ -122,7 +122,7 @@
 
 		private static function __applyValidationRule($data){
 			include(TOOLKIT . '/util.validators.php');
-			$rule = (isset($validators['email']) ? $validators['email'] : fieldMemberEmail::$validator);
+			$rule = (isset($validators['email']) ? $validators['email'] : fieldmemberEmail::$validator);
 
 			return General::validateString($data, $rule);
 		}
@@ -141,13 +141,13 @@
 
 			//	Check Email Address
 			if(!empty($email)) {
-				if(!fieldMemberEmail::__applyValidationRule($email)) {
+				if(!fieldmemberEmail::__applyValidationRule($email)) {
 					$message = __('%s contains invalid characters.', array($this->get('label')));
 					return self::__INVALID_FIELDS__;
 				}
 
 				// We need to make sure the value doesn't already exist in the Section.
-				$existing = $this->fetchMemberIDBy($email);
+				$existing = $this->fetchmemberIDBy($email);
 
 				// If there is an existing email, and it's not the current object (editing), error.
 				if(!is_null($existing) && $existing != $entry_id) {

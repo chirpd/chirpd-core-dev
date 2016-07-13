@@ -1,7 +1,7 @@
 <?php
 
 	/**
-	 * @package content
+	 * @package, content
 	 */
 	/**
 	 * The Datasource Editor page allows a developer to create new datasources
@@ -1058,7 +1058,7 @@
 				 * @param string $file
 				 *  The path to the Datasource file
 				 */
-				Symphony::ExtensionManager()->notifyMembers('DatasourcePreDelete', '/blueprints/datasources/', array('file' => DATASOURCES . "/data." . $this->_context[1] . ".php"));
+				Symphony::ExtensionManager()->notifymembers('DatasourcePreDelete', '/blueprints/datasources/', array('file' => DATASOURCES . "/data." . $this->_context[1] . ".php"));
 
 				if(!General::deleteFile(DATASOURCES . '/data.' . $this->_context[1] . '.php')){
 					$this->pageAlert(
@@ -1375,7 +1375,7 @@
 					 * @param array $dependencies
 					 *  An array of dependencies that this datasource has
 					 */
-					Symphony::ExtensionManager()->notifyMembers('DatasourcePreCreate', '/blueprints/datasources/', array(
+					Symphony::ExtensionManager()->notifymembers('DatasourcePreCreate', '/blueprints/datasources/', array(
 						'file' => $file,
 						'contents' => &$dsShell,
 						'params' => $params,
@@ -1407,7 +1407,7 @@
 					 *  An associative array of all the filters for this datasource with the key
 					 *  being the `field_id` and the value the filter.
 					 */
-					Symphony::ExtensionManager()->notifyMembers('DatasourcePreEdit', '/blueprints/datasources/', array(
+					Symphony::ExtensionManager()->notifymembers('DatasourcePreEdit', '/blueprints/datasources/', array(
 						'file' => $file,
 						'contents' => &$dsShell,
 						'dependencies' => $dependencies,
@@ -1459,7 +1459,7 @@
 						 * @param string $file
 						 *  The path to the Datasource file
 						 */
-						Symphony::ExtensionManager()->notifyMembers('DatasourcePostCreate', '/blueprints/datasources/', array(
+						Symphony::ExtensionManager()->notifymembers('DatasourcePostCreate', '/blueprints/datasources/', array(
 							'file' => $file
 						));
 					}
@@ -1478,7 +1478,7 @@
 						 *  have been renamed. To get the handle from this value, see
 						 *  `DatasourceManager::__getHandleFromFilename`
 						 */
-						Symphony::ExtensionManager()->notifyMembers('DatasourcePostEdit', '/blueprints/datasources/', array(
+						Symphony::ExtensionManager()->notifymembers('DatasourcePostEdit', '/blueprints/datasources/', array(
 							'file' => $file,
 							'previous_file' => ($queueForDeletion) ? $queueForDeletion : null
 						));

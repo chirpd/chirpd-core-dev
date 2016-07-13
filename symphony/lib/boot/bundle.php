@@ -1,7 +1,7 @@
 <?php
 
 	/**
-	 * @package boot
+	 * @package, boot
 	 */
 
 	if(!defined('PHP_VERSION_ID')){

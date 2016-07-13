@@ -3,18 +3,18 @@
 	if(!defined('__IN_SYMPHONY__')) die('<h2>Error</h2><p>You cannot directly access this file</p>');
 	require_once EXTENSIONS . '/members/lib/class.membersevent.php';
 
-	Class eventMembers_Generate_Recovery_Code extends MembersEvent {
+	Class eventmembers_Generate_Recovery_Code extends membersEvent {
 
 		const ROOTELEMENT = 'members-generate-recovery-code';
 
 		public static function about(){
 			return array(
-				'name' => 'Members: Generate Recovery Code',
+				'name' => 'members: Generate Recovery Code',
 				'author' => array(
 					'name' => 'Symphony CMS',
 					'website' => 'http://symphony-cms.com',
 					'email' => 'team@symphony-cms.com'),
-				'version' => 'Members 1.0',
+				'version' => 'members 1.0',
 				'release-date' => '2011-05-10'
 			);
 		}
@@ -25,12 +25,12 @@
 
 		public static function documentation() {
 			// Fetch all the Email Templates available and add to the end of the documentation
-			$templates = extension_Members::fetchEmailTemplates();
+			$templates = extension_members::fetchEmailTemplates();
 			$div = new XMLElement('div');
 
 			if(!empty($templates)) {
 				$label = new XMLElement('label', __('Generate Recovery Code Email Template'));
-				$generate_recovery_code_templates = extension_Members::setActiveTemplate($templates, 'generate-recovery-code-template');
+				$generate_recovery_code_templates = extension_members::setActiveTemplate($templates, 'generate-recovery-code-template');
 				$label->appendChild(Widget::Select('members[generate-recovery-code-template][]', $generate_recovery_code_templates, array('multiple' => 'multiple')));
 				$div->appendChild($label);
 
@@ -39,10 +39,10 @@
 			}
 
 			return '
-				<p>This event takes a member\'s email address or username to validate the existence of the Member before,
+				<p>This event takes a member\'s email address or username to validate the existence of the member before,
 				generating a recovery code for the member. A member\'s password is not reset completely until they enter
-				their recovery code through the Members: Reset Password event.<br /> This recovery code be seen
-				by outputting the Member: Password field in a datasource once this event has completed, or by outputting
+				their recovery code through the members: Reset Password event.<br /> This recovery code be seen
+				by outputting the member: Password field in a datasource once this event has completed, or by outputting
 				the event result.</p>
 				<h3>Example Front-end Form Markup</h3>
 				<p>This is an example of the form markup you can use on your front end. An input field
@@ -58,7 +58,7 @@
 				</code></pre>
 				<h3>More Information</h3>
 				<p>For further information about this event, including response and error XML, please refer to the
-				<a href="https://github.com/symphonycms/members/wiki/Members%3A-Generate-Recovery-Code">wiki</a>.</p>
+				<a href="https://github.com/symphonycms/members/wiki/members%3A-Generate-Recovery-Code">wiki</a>.</p>
 				' . $div->generate() . '
 			';
 		}
@@ -77,7 +77,7 @@
 			}
 
 			// If a member is logged in, return early with an error
-			if($driver->getMemberDriver()->isLoggedIn()) {
+			if($driver->getmemberDriver()->isLoggedIn()) {
 				$result->setAttribute('result', 'error');
 				$result->appendChild(
 					new XMLElement('error', null, array(
@@ -97,9 +97,9 @@
 			// Add any Email Templates for this event
 			$this->addEmailTemplates('generate-recovery-code-template');
 
-			// Check that either a Member: Username or Member: Password field
+			// Check that either a member: Username or member: Password field
 			// has been detected
-			$identity = SymphonyMember::setIdentityField($fields, false);
+			$identity = Symphonymember::setIdentityField($fields, false);
 			if(!$identity instanceof Identity) {
 				$result->setAttribute('result', 'error');
 				$result->appendChild(
@@ -126,13 +126,13 @@
 				return $result;
 			}
 
-			$member_id = $identity->fetchMemberIDBy($fields[$identity->get('element_name')]);
+			$member_id = $identity->fetchmemberIDBy($fields[$identity->get('element_name')]);
 			if(is_null($member_id)) {
 				$result->setAttribute('result', 'error');
 				$result->appendChild(
 					new XMLElement($identity->get('element_name'), null, array(
 						'type' => 'invalid',
-						'message' => __('Member not found.'),
+						'message' => __('member not found.'),
 						'label' => $identity->get('label')
 					))
 				);
@@ -141,13 +141,13 @@
 			}
 
 			// Find the Authentication fiedl
-			$auth = extension_Members::getField('authentication');
+			$auth = extension_members::getField('authentication');
 			$status = Field::__OK__;
 
 			// Generate new password
 			$newPassword = $auth->generatePassword();
 
-			$entry = $driver->getMemberDriver()->fetchMemberFromID($member_id);
+			$entry = $driver->getmemberDriver()->fetchmemberFromID($member_id);
 			$entry_data = $entry->getData();
 
 			// Generate a Recovery Code with the same logic as a normal password

@@ -1,7 +1,7 @@
 <?php
 
 	/**
-	 * @package core
+	 * @package, core
 	 */
 	/**
 	 * The Symphony class is an abstract class that implements the

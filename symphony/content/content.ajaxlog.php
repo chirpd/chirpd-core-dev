@@ -1,6 +1,6 @@
 <?php
 	/**
-	 * @package content
+	 * @package, content
 	 */
 	/**
 	 * The AjaxLog page accepts $_POST requests to write information to the

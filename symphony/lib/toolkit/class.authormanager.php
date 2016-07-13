@@ -1,6 +1,6 @@
 <?php
 	/**
-	 * @package toolkit
+	 * @package, toolkit
 	 */
 	/**
 	 * The `AuthorManager` class is responsible for managing all Author objects

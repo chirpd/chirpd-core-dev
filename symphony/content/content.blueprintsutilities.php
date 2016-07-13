@@ -1,6 +1,6 @@
 <?php
 	/**
-	 * @package content
+	 * @package, content
 	 */
 	/**
 	 * The Utilities page allows Developers to create Utilities through the
@@ -224,7 +224,7 @@
 				 *  An array of the selected rows. The value is usually the ID of the
 				 *  the associated object. 
 				 */
-				Symphony::ExtensionManager()->notifyMembers('CustomActions', '/blueprints/utilities/', array(
+				Symphony::ExtensionManager()->notifymembers('CustomActions', '/blueprints/utilities/', array(
 					'checked' => $checked
 				));
 
@@ -270,7 +270,7 @@
 				 * @param string $file
 				 *  The path to the Utility file
 				 */
-				Symphony::ExtensionManager()->notifyMembers('UtilityPreDelete', '/blueprints/utilities/', array('file' => $this->_existing_file));
+				Symphony::ExtensionManager()->notifymembers('UtilityPreDelete', '/blueprints/utilities/', array('file' => $this->_existing_file));
 
 				General::deleteFile(UTILITIES . '/' . $this->_existing_file);
 
@@ -313,7 +313,7 @@
 					 * @param string $contents
 					 *  The contents of the `$fields['body']`, passed by reference
 					 */
-					Symphony::ExtensionManager()->notifyMembers('UtilityPreCreate', '/blueprints/utilities/', array('file' => $file, 'contents' => &$fields['body']));
+					Symphony::ExtensionManager()->notifymembers('UtilityPreCreate', '/blueprints/utilities/', array('file' => $file, 'contents' => &$fields['body']));
 				}
 				else {
 					/**
@@ -328,7 +328,7 @@
 					 * @param string $contents
 					 *  The contents of the `$fields['body']`, passed by reference
 					 */
-					Symphony::ExtensionManager()->notifyMembers('UtilityPreEdit', '/blueprints/utilities/', array('file' => $file, 'contents' => &$fields['body']));
+					Symphony::ExtensionManager()->notifymembers('UtilityPreEdit', '/blueprints/utilities/', array('file' => $file, 'contents' => &$fields['body']));
 				}
 
 				// Write the file
@@ -358,7 +358,7 @@
 						 * @param string $file
 						 *  The path to the Utility file
 						 */
-						Symphony::ExtensionManager()->notifyMembers('UtilityPostCreate', '/blueprints/utilities/', array('file' => $file));
+						Symphony::ExtensionManager()->notifymembers('UtilityPostCreate', '/blueprints/utilities/', array('file' => $file));
 					}
 					else {
 						/**
@@ -371,7 +371,7 @@
 						 * @param string $file
 						 *  The path to the Utility file
 						 */
-						Symphony::ExtensionManager()->notifyMembers('UtilityPostEdit', '/blueprints/utilities/', array('file' => $file));
+						Symphony::ExtensionManager()->notifymembers('UtilityPostEdit', '/blueprints/utilities/', array('file' => $file));
 					}
 
 					redirect(SYMPHONY_URL . '/blueprints/utilities/edit/'.str_replace('.xsl', '', $fields['name']) . '/'.($this->_context[0] == 'new' ? 'created' : 'saved') . '/');

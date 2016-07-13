@@ -1,6 +1,6 @@
 <?php
 	/**
-	 * @package toolkit
+	 * @package, toolkit
 	 */
 	/**
 	 * The Field class represents a Symphony Field object. Fields are the building

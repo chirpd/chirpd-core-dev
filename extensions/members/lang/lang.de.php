@@ -11,32 +11,32 @@
 	);
 
 	/**
-	 * Members
+	 * members
 	 */
 	$dictionary = array(
 
-		'Member Roles' =>
+		'member Roles' =>
 		'Mitgliederrollen',
 
-		'Members Timezone' =>
+		'members Timezone' =>
 		'Mitglieder-Zeitzone',
 
-		'Members: Lock Role' =>
+		'members: Lock Role' =>
 		false,
 
-		'Members: Lock Activation' =>
+		'members: Lock Activation' =>
 		false,
 
-		'Members: Update Password' =>
+		'members: Update Password' =>
 		false,
 
-		'Members' =>
+		'members' =>
 		'Mitglieder',
 
-		'Active Members Section' =>
+		'Active members Section' =>
 		'Aktiver Mitgliederbereich',
 
-		'A Members section will at minimum contain either a Member: Email or a Member: Username field' =>
+		'A members section will at minimum contain either a member: Email or a member: Username field' =>
 		'Ein Mitgliederbereich wird mindestens ein Mitglied: Email Feld oder ein Mitglied: Benutzername Feld enthalten',
 
 		'Email Template Filter' =>
@@ -60,22 +60,22 @@
 		'You are not authorised to perform this action.' =>
 		'Sie sind nicht befugt diese Aktion auszuführen.',
 
-		'There is no Member: Role field in the active Members section. <a href="%s%d/">Add Member: Role field?</a>' =>
-		'Es gibt kein Member: Role Feld im aktiven Mitgliederbereich. <a href="%s%d/">Member: Role Feld hinzufügen?</a',
+		'There is no member: Role field in the active members section. <a href="%s%d/">Add member: Role field?</a>' =>
+		'Es gibt kein member: Role Feld im aktiven Mitgliederbereich. <a href="%s%d/">member: Role Feld hinzufügen?</a',
 
 		'Create a Role' =>
 		'Rolle erzeugen',
 
-		'No Member section has been specified in %s. Please do this first.' =>
+		'No member section has been specified in %s. Please do this first.' =>
 		'In %s wurde kein Mitgliederbereich festgelegt. Bitte tun Sie dies zuerst.',
 
 		'This is the role assumed by the general public.' =>
 		'Das ist die Rolle, die der Allgemeinheit unterstellt wird.',
 
-		'Delete Members' =>
+		'Delete members' =>
 		'Mitglieder löschen',
 
-		'Move Members To' =>
+		'Move members To' =>
 		'Mitglieder bewegen nach',
 
 		'The role you requested to edit does not exist.' =>
@@ -84,10 +84,10 @@
 		'Role not found' =>
 		'Rolle nicht gefunden',
 
-		'Symphony &ndash; Member Roles' =>
+		'Symphony &ndash; member Roles' =>
 		'Symphony &ndash; Mitgliederrollen',
 
-		'Symphony &ndash; Member Roles &ndash; ' =>
+		'Symphony &ndash; member Roles &ndash; ' =>
 		'Symphony &ndash; Mitgliederrollen &ndash; ',
 
 		'Event Level Permissions' =>
@@ -147,10 +147,10 @@
 		'%s is a required field.' =>
 		'%s ist ein Pflichtfeld.',
 
-		'Member not found.' =>
+		'member not found.' =>
 		'Benutzer nicht gefunden.',
 
-		'Member is already activated.' =>
+		'member is already activated.' =>
 		'Mitglied ist bereits aktiviert.',
 
 		'Activation error. Code was invalid or has expired.' =>
@@ -171,7 +171,7 @@
 		'Recovery code has expired.' =>
 		'Notfallcode ist abgelaufen.',
 
-		'Member: Activation' =>
+		'member: Activation' =>
 		'Mitglied: Aktivierung',
 
 		'Activation Code Expiry' =>
@@ -180,7 +180,7 @@
 		'How long a member\'s activation code will be valid for before it expires' =>
 		'Wie lange der Aktivierungscode eines Mitglieds gültig ist bevor er erlischt',
 
-		'Role for Members who are awaiting activation' =>
+		'Role for members who are awaiting activation' =>
 		'Rolle für Mitglieder die auf die Aktivierung warten',
 
 		'%s Prevent unactivated members from logging in' =>
@@ -204,7 +204,7 @@
 		'Account will be activated when entry is saved' =>
 		'Das Konto wird aktiviert wenn der Eintrag gespeichert wird',
 
-		'Member will assume the role <strong>%s</strong> when activated.' =>
+		'member will assume the role <strong>%s</strong> when activated.' =>
 		'Nach der Aktivierung wird das Mitglied die Rolle <strong>%s</strong> annehmen.',
 
 		'Activated %s' =>
@@ -219,7 +219,7 @@
 		'Strong' =>
 		'Stark',
 
-		'Member: Email' =>
+		'member: Email' =>
 		'Benutzer: E-Mail',
 
 		'%s contains invalid characters.' =>
@@ -228,7 +228,7 @@
 		'%s is already taken.' =>
 		'%s ist bereits vergeben.',
 
-		'Member: Password' =>
+		'member: Password' =>
 		'Benutzer: Passwort',
 
 		'Invalid %s.' =>
@@ -276,22 +276,22 @@
 		'Confirm' =>
 		'Bestätigen',
 
-		'Member: Role' =>
+		'member: Role' =>
 		'Mitglied: Rolle',
 
-		'Default Member Role' =>
+		'Default member Role' =>
 		'Standardrolle für Mitglieder',
 
-		'Member: Timezone' =>
+		'member: Timezone' =>
 		'Mitglied: Zeitzone',
 
 		'Available Zones' =>
 		'Verfügbare Zonen',
 
-		'Member: Username' =>
+		'member: Username' =>
 		'Mitglied: Benutzername',
 
-		'Member is not activated.' =>
+		'member is not activated.' =>
 		'Mitglied ist nicht aktiviert.',
 
 		'Event updated at {$time}. <a href="{$new_url}" accesskey="c">Create another?</a> <a href="{$url}" accesskey="a">View all Events</a>' =>

@@ -1,7 +1,7 @@
 <?php
 
 	/**
-	 * @package interface
+	 * @package, interface
 	 */
 	/**
 	 * This interface describes the minimum a new Event type needs to

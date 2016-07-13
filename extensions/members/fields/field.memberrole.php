@@ -2,7 +2,7 @@
 
 	require_once(TOOLKIT . '/fields/field.select.php');
 
-	Class fieldMemberRole extends fieldSelect {
+	Class fieldmemberRole extends fieldSelect {
 
 	/*-------------------------------------------------------------------------
 		Definition:
@@ -10,7 +10,7 @@
 
 		public function __construct(){
 			parent::__construct();
-			$this->_name = __('Member: Role');
+			$this->_name = __('member: Role');
 			$this->_showassociation = false;
 		}
 
@@ -103,7 +103,7 @@
 				}
 			}
 
-			$label = new XMlElement('label', __('Default Member Role'));
+			$label = new XMlElement('label', __('Default member Role'));
 			$label->setAttribute('class', 'column');
 			$label->appendChild(Widget::Select(
 				"fields[{$this->get('sortorder')}][default_role]", $options
@@ -129,7 +129,7 @@
 
 			if($id === false) return false;
 
-			fieldMemberRole::createSettingsTable();
+			fieldmemberRole::createSettingsTable();
 
 			$fields = array(
 				'field_id' => $id,
@@ -145,15 +145,15 @@
 	-------------------------------------------------------------------------*/
 
 		/**
-		 * If the Members installation has a Activation field used, we need to make sure
-		 * that this field represents accurately what Role this Member actually has.
+		 * If the members installation has a Activation field used, we need to make sure
+		 * that this field represents accurately what Role this member actually has.
 		 * The Activation field allows developers to set a Activation Role, which is the role
-		 * assigned to Members who have registered, but not yet activated their account.
-		 * This Activation role masks the Role field's value, so the Member assumes the
+		 * assigned to members who have registered, but not yet activated their account.
+		 * This Activation role masks the Role field's value, so the member assumes the
 		 * Role of the Activation role.
 		 *
 		 * @param integer $entry_id
-		 *  The Entry ID of the Member
+		 *  The Entry ID of the member
 		 * @param integer $role_id
 		 *  A given Role ID
 		 * @return integer
@@ -164,7 +164,7 @@
 			if(is_null($entry_id)) return null;
 
 			$activation_role_id = null;
-			$activation = extension_Members::getField('activation');
+			$activation = extension_members::getField('activation');
 			if(!is_null($activation) && !is_null($entry_id)) {
 				$entry = EntryManager::fetch($entry_id);
 				$entry = $entry[0];
@@ -218,7 +218,7 @@
 				if($default_role instanceof Role) {
 					$label->appendChild(
 						new XMLElement('span',
-						__('Member will assume the role <strong>%s</strong> when activated.', array($default_role->get('name'))),
+						__('member will assume the role <strong>%s</strong> when activated.', array($default_role->get('name'))),
 						array('class' => 'help frame'))
 					);
 					$label->appendChild(

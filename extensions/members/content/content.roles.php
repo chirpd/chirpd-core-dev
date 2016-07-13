@@ -3,24 +3,24 @@
 	require_once(TOOLKIT . '/class.administrationpage.php');
 	require_once(TOOLKIT . '/class.eventmanager.php');
 
-	Class contentExtensionMembersRoles extends AdministrationPage {
+	Class contentExtensionmembersRoles extends AdministrationPage {
 
 		public function __viewIndex() {
 			$this->setPageType('table');
-			$this->setTitle(__('%1$s &ndash; %2$s', array(__('Symphony'), __('Member Roles'))));
+			$this->setTitle(__('%1$s &ndash; %2$s', array(__('Symphony'), __('member Roles'))));
 
-			if(is_null(extension_Members::getFieldHandle('role')) && !is_null(extension_Members::getMembersSection())) {
+			if(is_null(extension_members::getFieldHandle('role')) && !is_null(extension_members::getmembersSection())) {
 				$this->pageAlert(
-					__('There is no Member: Role field in the active Members section. <a href="%s%d/">Add Member: Role field?</a>',
+					__('There is no member: Role field in the active members section. <a href="%s%d/">Add member: Role field?</a>',
 					array(
 						SYMPHONY_URL . '/blueprints/sections/edit/',
-						extension_Members::getMembersSection()
+						extension_members::getmembersSection()
 					)),
 					Alert::NOTICE
 				);
 			}
 
-			$this->appendSubheading(__('Member Roles'), Widget::Anchor(
+			$this->appendSubheading(__('member Roles'), Widget::Anchor(
 				__('Create New'), Administration::instance()->getCurrentPageURL().'new/', __('Create a Role'), 'create button', NULL, array('accesskey' => 'c')
 			));
 
@@ -28,7 +28,7 @@
 
 			$aTableHead = array(
 				array(__('Name'), 'col'),
-				array(__('Members'), 'col')
+				array(__('members'), 'col')
 			);
 
 			$aTableBody = array();
@@ -39,17 +39,17 @@
 				));
 			}
 
-			else if(is_null(extension_Members::getMembersSection())) {
+			else if(is_null(extension_members::getmembersSection())) {
 				$aTableBody = array(Widget::TableRow(
-					array(Widget::TableData(__('No Member section has been specified in <a href="%s">Preferences</a>. Please do this first.', array(SYMPHONY_URL.'/system/preferences/')), 'inactive', NULL, count($aTableHead)))
+					array(Widget::TableData(__('No member section has been specified in <a href="%s">Preferences</a>. Please do this first.', array(SYMPHONY_URL.'/system/preferences/')), 'inactive', NULL, count($aTableHead)))
 				));
 			}
 
 			else {
-				$section = SectionManager::fetch(extension_Members::getMembersSection());
+				$section = SectionManager::fetch(extension_members::getmembersSection());
 
 				$with_selected_roles = array();
-				$hasRoles = !is_null(extension_Members::getFieldHandle('role'));
+				$hasRoles = !is_null(extension_members::getFieldHandle('role'));
 
 				foreach($roles as $role){
 					// Setup each cell
@@ -65,12 +65,12 @@
 					if($hasRoles && $role->get('id') != Role::PUBLIC_ROLE) {
 						$member_count = Symphony::Database()->fetchVar('count', 0, sprintf(
 							"SELECT COUNT(*) AS `count` FROM `tbl_entries_data_%d` WHERE `role_id` = %d",
-							extension_Members::getField('role')->get('id'), $role->get('id')
+							extension_members::getField('role')->get('id'), $role->get('id')
 						));
 
 						$td2 = Widget::TableData(Widget::Anchor(
 							"$member_count",
-							SYMPHONY_URL . '/publish/' . $section->get('handle') . '/?filter=' . extension_Members::getFieldHandle('role') . ':' . $role->get('id')
+							SYMPHONY_URL . '/publish/' . $section->get('handle') . '/?filter=' . extension_members::getFieldHandle('role') . ':' . $role->get('id')
 						));
 					}
 
@@ -108,11 +108,11 @@
 			$options = array(
 				0 => array(null, false, __('With Selected...')),
 				2 => array('delete', false, __('Delete'), 'confirm'),
-				3 => array('delete-members', false, __('Delete Members'), 'confirm')
+				3 => array('delete-members', false, __('Delete members'), 'confirm')
 			);
 
 			if(count($with_selected_roles) > 0){
-				$options[1] = array('label' => __('Move Members To'), 'options' => $with_selected_roles);
+				$options[1] = array('label' => __('Move members To'), 'options' => $with_selected_roles);
 			}
 
 			$tableActions->appendChild(Widget::Apply($options));
@@ -129,7 +129,7 @@
 			if($this->_context[0] == 'edit') {
 				$isNew = false;
 
-				if(!$role_id = $this->_context[1]) redirect(extension_Members::baseURL() . 'roles/');
+				if(!$role_id = $this->_context[1]) redirect(extension_members::baseURL() . 'roles/');
 
 				if(!$existing = RoleManager::fetch($role_id)){
 					throw new SymphonyErrorPage(__('The role you requested to edit does not exist.'), __('Role not found'), 'error');
@@ -181,7 +181,7 @@
 			$this->setPageType('form');
 
 			if($isNew) {
-				$this->setTitle(__('Symphony &ndash; Member Roles'));
+				$this->setTitle(__('Symphony &ndash; member Roles'));
 				$this->appendSubheading(__('Untitled'));
 
 				$fields = array(
@@ -191,7 +191,7 @@
 				);
 			}
 			else {
-				$this->setTitle(__('Symphony &ndash; Member Roles &ndash; ') . $existing->get('name'));
+				$this->setTitle(__('Symphony &ndash; member Roles &ndash; ') . $existing->get('name'));
 				$this->appendSubheading($existing->get('name'));
 
 				if(isset($_POST['fields'])){
@@ -206,7 +206,7 @@
 				}
 			}
 			$this->insertBreadcrumbs(array(
-				Widget::Anchor(__('Member Roles'), extension_members::baseURL() . 'roles/'),
+				Widget::Anchor(__('member Roles'), extension_members::baseURL() . 'roles/'),
 			));
 
 			$fieldset = new XMLElement('fieldset');
@@ -390,7 +390,7 @@
 						foreach($checked as $role_id) {
 							RoleManager::delete($role_id);
 						}
-						redirect(extension_Members::baseURL() . '/roles/');
+						redirect(extension_members::baseURL() . '/roles/');
 
 						break;
 
@@ -398,7 +398,7 @@
 						foreach($checked as $role_id) {
 							RoleManager::delete($role_id, null, true);
 						}
-						redirect(extension_Members::baseURL() . '/roles/');
+						redirect(extension_members::baseURL() . '/roles/');
 
 						break;
 				}
@@ -411,7 +411,7 @@
 
 		public function __actionEdit() {
 			if(array_key_exists('delete', $_POST['action'])) {
-				return $this->__actionDelete($this->_context[1], extension_Members::baseURL() . 'roles/');
+				return $this->__actionDelete($this->_context[1], extension_members::baseURL() . 'roles/');
 			}
 
 			if(array_key_exists('save', $_POST['action'])) {
@@ -420,7 +420,7 @@
 
 				// If we are editing, we need to make sure the current `$role_id` exists
 				if(!$isNew) {
-					if(!$role_id = $this->_context[1]) redirect(extension_Members::baseURL() . 'roles/');
+					if(!$role_id = $this->_context[1]) redirect(extension_members::baseURL() . 'roles/');
 
 					if(!$existing = RoleManager::fetch($role_id)){
 						throw new SymphonyErrorPage(__('The role you requested to edit does not exist.'), __('Role not found'), 'error');
@@ -479,7 +479,7 @@
 
 		public function __actionDelete($role_id = null, $redirect = null, $purge_members = false) {
 			if(array_key_exists('delete', $_POST['action'])) {
-				if(!$role_id) redirect(extension_Members::baseURL() . 'roles/');
+				if(!$role_id) redirect(extension_members::baseURL() . 'roles/');
 
 				if($role_id == Role::PUBLIC_ROLE) {
 					return $this->pageAlert(
@@ -491,7 +491,7 @@
 					throw new SymphonyErrorPage(__('The role you requested to delete does not exist.'), __('Role not found'), 'error');
 				}
 
-				// @todo What should happen to any Members that had this Role?
+				// @todo What should happen to any members that had this Role?
 				RoleManager::delete($role_id, $purge_members);
 
 				if(!is_null($redirect)) redirect($redirect);

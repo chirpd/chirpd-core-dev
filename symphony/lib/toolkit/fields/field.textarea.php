@@ -1,7 +1,7 @@
 <?php
 
 	/**
-	 * @package toolkit
+	 * @package, toolkit
 	 */
 
 	require_once FACE . '/interface.exportablefield.php';
@@ -147,7 +147,7 @@
 			 * @param Widget $label
 			 * @param Widget $textarea
 			 */
-			Symphony::ExtensionManager()->notifyMembers('ModifyTextareaFieldPublishWidget', '/backend/', array(
+			Symphony::ExtensionManager()->notifymembers('ModifyTextareaFieldPublishWidget', '/backend/', array(
 			    'field' => &$this,
 			    'label' => &$label,
 			    'textarea' => &$textarea

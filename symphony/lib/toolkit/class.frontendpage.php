@@ -1,7 +1,7 @@
 <?php
 
 	/**
-	 * @package toolkit
+	 * @package, toolkit
 	 */
 
 	/**
@@ -174,7 +174,7 @@
 				 * @param mixed $devkit
 				 *  Allows a devkit to register to this page
 				 */
-				Symphony::ExtensionManager()->notifyMembers('FrontendDevKitResolve', '/frontend/', array(
+				Symphony::ExtensionManager()->notifymembers('FrontendDevKitResolve', '/frontend/', array(
 					'full_generate' => &$full_generate,
 					'devkit'		=> &$devkit
 				));
@@ -197,7 +197,7 @@
 				 * @param string $xsl
 				 *  This pages XSLT, by reference
 				 */
-				Symphony::ExtensionManager()->notifyMembers('FrontendOutputPreGenerate', '/frontend/', array(
+				Symphony::ExtensionManager()->notifymembers('FrontendOutputPreGenerate', '/frontend/', array(
 					'page'	=> &$this,
 					'xml'	=> &$this->_xml,
 					'xsl'	=> &$this->_xsl
@@ -228,7 +228,7 @@
 				 * @param string $context
 				 * '/frontend/'
 				 */
-				Symphony::ExtensionManager()->notifyMembers('FrontendPreRenderHeaders', '/frontend/');
+				Symphony::ExtensionManager()->notifymembers('FrontendPreRenderHeaders', '/frontend/');
 
 				$backup_param = $this->_param;
 				$this->_param['current-query-string'] = General::wrapInCDATA($this->_param['current-query-string']);
@@ -243,7 +243,7 @@
 				 * @param string $output
 				 *  The generated output of this page, ie. a string of HTML, passed by reference
 				 */
-				Symphony::ExtensionManager()->notifyMembers('FrontendOutputPostGenerate', '/frontend/', array('output' => &$output));
+				Symphony::ExtensionManager()->notifymembers('FrontendOutputPostGenerate', '/frontend/', array('output' => &$output));
 
 				Symphony::Profiler()->sample('XSLT Transformation', PROFILE_LAP);
 
@@ -318,7 +318,7 @@
 			 *  An associative array of page data, which is a combination from `tbl_pages` and
 			 *  the path of the page on the filesystem. Passed by reference
 			 */
-			Symphony::ExtensionManager()->notifyMembers('FrontendPageResolved', '/frontend/', array('page' => &$this, 'page_data' => &$page));
+			Symphony::ExtensionManager()->notifymembers('FrontendPageResolved', '/frontend/', array('page' => &$this, 'page_data' => &$page));
 
 			$this->_pageData = $page;
 			$path = explode('/', $page['path']);
@@ -407,7 +407,7 @@
 			 * @param array $params
 			 *  An associative array of this page's parameters
 			 */
-			Symphony::ExtensionManager()->notifyMembers('FrontendParamsResolve', '/frontend/', array('params' => &$this->_param));
+			Symphony::ExtensionManager()->notifymembers('FrontendParamsResolve', '/frontend/', array('params' => &$this->_param));
 
 			$xml_build_start = precision_timer();
 
@@ -454,7 +454,7 @@
 			 * @param array $params
 			 *  An associative array of this page's parameters
 			 */
-			Symphony::ExtensionManager()->notifyMembers('FrontendParamsPostResolve', '/frontend/', array('params' => &$this->_param));
+			Symphony::ExtensionManager()->notifymembers('FrontendParamsPostResolve', '/frontend/', array('params' => &$this->_param));
 
 			$params = new XMLElement('params');
 			foreach($this->_param as $key => $value) {
@@ -546,7 +546,7 @@
 			 * @param FrontendPage $page
 			 *  An instance of this FrontendPage
 			 */
-			Symphony::ExtensionManager()->notifyMembers('FrontendPrePageResolve', '/frontend/', array('row' => &$row, 'page' => &$this->_page));
+			Symphony::ExtensionManager()->notifymembers('FrontendPrePageResolve', '/frontend/', array('row' => &$row, 'page' => &$this->_page));
 
 			// Default to the index page if no page has been specified
 			if((!$this->_page || $this->_page == '//') && is_null($row)) {
@@ -685,7 +685,7 @@
 			 * @param array $page_data
 			 *  An associative array of page meta data
 			 */
-			Symphony::ExtensionManager()->notifyMembers('FrontendProcessEvents',	'/frontend/', array(
+			Symphony::ExtensionManager()->notifymembers('FrontendProcessEvents',	'/frontend/', array(
 					'env' => $this->_env,
 					'events' => &$events,
 					'wrapper' => &$wrapper,
@@ -732,7 +732,7 @@
 			 *  contained in a root XMLElement that is the handlised version of
 			 *  their name.
 			 */
-			Symphony::ExtensionManager()->notifyMembers('FrontendEventPostProcess', '/frontend/', array('xml' => &$wrapper));
+			Symphony::ExtensionManager()->notifymembers('FrontendEventPostProcess', '/frontend/', array('xml' => &$wrapper));
 
 		}
 
@@ -831,7 +831,7 @@
 				 * @param array $param_pool
 				 *  The existing param pool including output parameters of any previous data sources
 				 */
-				Symphony::ExtensionManager()->notifyMembers('DataSourcePreExecute', '/frontend/', array(
+				Symphony::ExtensionManager()->notifymembers('DataSourcePreExecute', '/frontend/', array(
 					'datasource' => &$ds,
 					'xml' => &$xml,
 					'param_pool' => &$this->_env['pool']
@@ -859,7 +859,7 @@
 					 * @param array $param_pool
 					 *  The existing param pool including output parameters of any previous data sources
 					 */
-					Symphony::ExtensionManager()->notifyMembers('DataSourcePostExecute', '/frontend/', array(
+					Symphony::ExtensionManager()->notifymembers('DataSourcePostExecute', '/frontend/', array(
 						'datasource' => $ds,
 						'xml' => &$xml,
 						'param_pool' => &$this->_env['pool']

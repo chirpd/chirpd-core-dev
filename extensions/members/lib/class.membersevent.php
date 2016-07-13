@@ -2,13 +2,13 @@
 
 	if(!defined('__IN_SYMPHONY__')) die('<h2>Error</h2><p>You cannot directly access this file</p>');
 
-	Abstract Class MembersEvent extends Event {
+	Abstract Class membersEvent extends Event {
 
 		// For the delegates to populate
 		public $filter_results = array();
 		public $filter_errors = array();
 
-		// Don't allow a user to set permissions for any Members event
+		// Don't allow a user to set permissions for any members event
 		// in the Roles interface.
 		public function ignoreRolePermissions() {
 			return true;
@@ -44,10 +44,10 @@
 		protected function addEmailTemplates($template) {
 			// Read the template from the Configuration if it exists
 			// This is required for the Email Template Filter/Email Template Manager
-			if(!is_null(extension_Members::getSetting($template))) {
+			if(!is_null(extension_members::getSetting($template))) {
 				$this->eParamFILTERS = array_merge(
 					$this->eParamFILTERS,
-					explode(',',extension_Members::getSetting($template))
+					explode(',',extension_members::getSetting($template))
 				);
 			}
 		}
@@ -66,7 +66,7 @@
 			 * @param array $messages
 			 * @param XMLElement $post_values
 			 */
-			Symphony::ExtensionManager()->notifyMembers(
+			Symphony::ExtensionManager()->notifymembers(
 				'EventPreSaveFilter',
 				'/frontend/',
 				array(
@@ -86,7 +86,7 @@
 					list($name, $status, $message, $attributes) = $fr;
 
 					$result->appendChild(
-						MembersEvent::buildFilterElement($name, ($status ? 'passed' : 'failed'), $message, $attributes)
+						membersEvent::buildFilterElement($name, ($status ? 'passed' : 'failed'), $message, $attributes)
 					);
 
 					if($status === false) $can_proceed = false;
@@ -113,7 +113,7 @@
 			 * @param array $errors
 			 * @param Entry $entry
 			 */
-			Symphony::ExtensionManager()->notifyMembers(
+			Symphony::ExtensionManager()->notifymembers(
 				'EventFinalSaveFilter', '/frontend/', array(
 					'fields'	=> $fields,
 					'event'		=> $this,
@@ -129,7 +129,7 @@
 					list($name, $status, $message, $attributes) = $fr;
 
 					$result->appendChild(
-						MembersEvent::buildFilterElement($name, ($status ? 'passed' : 'failed'), $message, $attributes)
+						membersEvent::buildFilterElement($name, ($status ? 'passed' : 'failed'), $message, $attributes)
 					);
 				}
 			}

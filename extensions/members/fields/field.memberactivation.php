@@ -3,12 +3,12 @@
 	require_once(TOOLKIT . '/fields/field.select.php');
 
 	/**
-	 * Activation field. If added to a Members section, it generates and stores
+	 * Activation field. If added to a members section, it generates and stores
 	 * activation codes for new members, handles activation via normal events,
 	 * sends emails, and displays as a checkbox in the backend publish area.
 	 */
 
-	Class fieldMemberActivation extends fieldSelect {
+	Class fieldmemberActivation extends fieldSelect {
 
 	/*-------------------------------------------------------------------------
 		Definition:
@@ -16,7 +16,7 @@
 
 		public function __construct(){
 			parent::__construct();
-			$this->_name = __('Member: Activation');
+			$this->_name = __('member: Activation');
 			$this->_showassociation = false;
 		}
 
@@ -160,7 +160,7 @@
 		}
 
 		public static function findCodeExpiry() {
-			return extension_Members::findCodeExpiry('tbl_fields_memberactivation');
+			return extension_members::findCodeExpiry('tbl_fields_memberactivation');
 		}
 
 		public function getToggleStates() {
@@ -209,7 +209,7 @@
 			));
 
 			$ul = new XMLElement('ul', NULL, array('class' => 'tags singular'));
-			$tags = fieldMemberActivation::findCodeExpiry();
+			$tags = fieldmemberActivation::findCodeExpiry();
 			foreach($tags as $name => $time) {
 				$ul->appendChild(new XMLElement('li', $name, array('class' => $time)));
 			}
@@ -230,7 +230,7 @@
 				}
 			}
 
-			$label = new XMlElement('label', __('Role for Members who are awaiting activation'));
+			$label = new XMlElement('label', __('Role for members who are awaiting activation'));
 			$label->setAttribute('class', 'column');
 			$label->appendChild(Widget::Select(
 				"fields[{$this->get('sortorder')}][activation_role_id]", $options
@@ -282,7 +282,7 @@
 
 			if($id === false) return false;
 
-			fieldMemberActivation::createSettingsTable();
+			fieldmemberActivation::createSettingsTable();
 
 			$fields = array(
 				'field_id' => $id,
@@ -321,7 +321,7 @@
 				));
 			}
 
-			// Member not activated
+			// member not activated
 			if(!$isActivated && !is_null($data)) {
 				// If code is still live, displays when the code was generated.
 				if($this->isCodeActive($entry_id) !== false) {

@@ -1,6 +1,6 @@
 <?php
 	/**
-	 * @package toolkit
+	 * @package, toolkit
 	 */
 	/**
 	 * The Alert class drives the standard Symphony notices that

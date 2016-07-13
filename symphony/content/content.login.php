@@ -1,7 +1,7 @@
 <?php
 
 	/**
-	 * @package content
+	 * @package, content
 	 */
 
 	/**
@@ -178,7 +178,7 @@
 						 * @param string $username
 						 *  The username of the Author who attempted to login.
 						 */
-						Symphony::ExtensionManager()->notifyMembers('AuthorLoginFailure', '/login/', array('username' => Symphony::Database()->cleanValue($_POST['username'])));
+						Symphony::ExtensionManager()->notifymembers('AuthorLoginFailure', '/login/', array('username' => Symphony::Database()->cleanValue($_POST['username'])));
 						$this->failedLoginAttempt = true;
 					}
 
@@ -193,7 +193,7 @@
 						 * @param string $username
 						 *  The username of the Author who logged in.
 						 */
-						Symphony::ExtensionManager()->notifyMembers('AuthorLoginSuccess', '/login/', array('username' => Symphony::Database()->cleanValue($_POST['username'])));
+						Symphony::ExtensionManager()->notifymembers('AuthorLoginSuccess', '/login/', array('username' => Symphony::Database()->cleanValue($_POST['username'])));
 
 						isset($_POST['redirect']) ? redirect($_POST['redirect']) : redirect(SYMPHONY_URL . '/');
 					}
@@ -261,7 +261,7 @@
 						 * @param integer $author_id
 						 *  The ID of the Author who requested the password reset
 						 */
-						Symphony::ExtensionManager()->notifyMembers('AuthorPostPasswordResetSuccess', '/login/', array('author_id' => $author['id']));
+						Symphony::ExtensionManager()->notifymembers('AuthorPostPasswordResetSuccess', '/login/', array('author_id' => $author['id']));
 					}
 
 					else {
@@ -277,7 +277,7 @@
 						 * @param string $email
 						 *  The sanitised Email of the Author who tried to request the password reset
 						 */
-						Symphony::ExtensionManager()->notifyMembers('AuthorPostPasswordResetFailure', '/login/', array('email' => Symphony::Database()->cleanValue($_POST['email'])));
+						Symphony::ExtensionManager()->notifymembers('AuthorPostPasswordResetFailure', '/login/', array('email' => Symphony::Database()->cleanValue($_POST['email'])));
 
 						$this->_email_sent = false;
 					}

@@ -1,6 +1,6 @@
 <?php
 	/**
-	 * @package content
+	 * @package, content
 	 */
 	/**
 	 * Displays the contents of the Symphony `ACTIVITY_LOG`

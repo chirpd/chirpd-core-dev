@@ -114,11 +114,11 @@ This will update *Content > Videos*
 
 ### Teachings: Tags
 
-### Members
+### members
 
-### Members: Roles
+### members: Roles
 
-### Members: Roles: Types
+### members: Roles: Types
 
 ### UStream
 

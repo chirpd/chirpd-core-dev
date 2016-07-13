@@ -1,6 +1,6 @@
 <?php
 	/**
-	 * @package content
+	 * @package, content
 	 */
 	/**
 	 * The AjaxParameters returns an JSON array of all available parameters.

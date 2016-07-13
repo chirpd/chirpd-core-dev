@@ -342,7 +342,7 @@
 					###
 					# Delegate: XMLImporterEntryPreEdit
 					# Description: Just prior to editing of an Entry.
-					Symphony::ExtensionManager()->notifyMembers(
+					Symphony::ExtensionManager()->notifymembers(
 						'XMLImporterEntryPreEdit', '/xmlimporter/importers/run/',
 						array(
 							'section'	=> $section,
@@ -359,7 +359,7 @@
 					###
 					# Delegate: XMLImporterEntryPreCreate
 					# Description: Just prior to creation of an Entry. Entry object provided
-					Symphony::ExtensionManager()->notifyMembers(
+					Symphony::ExtensionManager()->notifymembers(
 						'XMLImporterEntryPreCreate', '/xmlimporter/importers/run/',
 						array(
 							'section'	=> $section,
@@ -379,7 +379,7 @@
 					###
 					# Delegate: XMLImporterEntryPostEdit
 					# Description: Editing an entry. Entry object is provided.
-					Symphony::ExtensionManager()->notifyMembers(
+					Symphony::ExtensionManager()->notifymembers(
 						'XMLImporterEntryPostEdit', '/xmlimporter/importers/run/',
 						array(
 							'section'	=> $section,
@@ -393,7 +393,7 @@
 					###
 					# Delegate: XMLImporterEntryPostCreate
 					# Description: Creation of an Entry. New Entry object is provided.
-					Symphony::ExtensionManager()->notifyMembers(
+					Symphony::ExtensionManager()->notifymembers(
 						'XMLImporterEntryPostCreate', '/xmlimporter/importers/run/',
 						array(
 							'section'	=> $section,

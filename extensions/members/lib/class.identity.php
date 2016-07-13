@@ -5,14 +5,14 @@
 
 	/**
 	 * The Identity class is extended by fields that act as the identity
-	 * fields for the Members system. These fields provide unique information
+	 * fields for the members system. These fields provide unique information
 	 * to identify a user uniquely in the system. At present, there are two
-	 * Identity fields, Member: Username and Member: Email. As time goes on
+	 * Identity fields, member: Username and member: Email. As time goes on
 	 * it is anticipated that this will extend to include other types, such
 	 * as Facebook or Twitter.
 	 *
 	 * This class provides methods for the system to return an Entry of a
-	 * Member given a particular search term via the `fetchMemberBy` function.
+	 * member given a particular search term via the `fetchmemberBy` function.
 	 */
 	Abstract Class Identity extends Field {
 
@@ -49,20 +49,20 @@
 	-------------------------------------------------------------------------*/
 
 		/**
-		 * Given a Member ID, return Member
+		 * Given a member ID, return member
 		 *
 		 * @param integer $member_id
 		 * @return Entry
 		 */
-		public function fetchMemberFromID($member_id){
+		public function fetchmemberFromID($member_id){
 			if(!(Identity::$driver instanceof Extension)){
 				Identity::$driver = Symphony::ExtensionManager()->create('members');
 			}
 
-			return Identity::$driver->getMemberDriver()->initialiseMemberObject($member_id);
+			return Identity::$driver->getmemberDriver()->initialisememberObject($member_id);
 		}
 
-		abstract public function fetchMemberIDBy($needle);
+		abstract public function fetchmemberIDBy($needle);
 
 	/*-------------------------------------------------------------------------
 		Publish:

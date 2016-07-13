@@ -33,7 +33,7 @@
 		'Download ZIP' => 
 		'Lataa ZIP',
 
-		'Save (overwrite) install files or package entire site as a <code>.zip</code> archive for download.' => 
+		'Save (overwrite) install files or package, entire site as a <code>.zip</code> archive for download.' => 
 		'Tallenna (ylikirjoita) asennustiedostot tai lataa koko sivusto <code>.zip</code>-tiedostossa.',
 
 		'An error occurred while trying to write the <code>install.sql</code> file. Check the file permissions.' => 

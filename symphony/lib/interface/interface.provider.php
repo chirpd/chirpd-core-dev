@@ -1,7 +1,7 @@
 <?php
 
 	/**
-	 * @package interface
+	 * @package, interface
 	 */
 	/**
 	 * This interface is to be implemented by Extensions who wish to provide

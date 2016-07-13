@@ -32,7 +32,7 @@
 
 		public function about() {
 			return array(
-				'name' => 'Member: Entry by id',
+				'name' => 'member: Entry by id',
 				'author' => array(
 					'name' => 'Jonathan Simcoe',
 					'website' => 'http://atheycreek',

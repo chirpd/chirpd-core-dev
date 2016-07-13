@@ -1,6 +1,6 @@
 <?php
 	/**
-	 * @package core
+	 * @package, core
 	 */
 
 	require_once(CORE . '/class.log.php');

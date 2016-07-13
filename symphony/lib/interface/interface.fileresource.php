@@ -1,7 +1,7 @@
 <?php
 
 	/**
-	 * @package interface
+	 * @package, interface
 	 */
 	/**
 	 * The `FileResource` interface defines the minimum functions required

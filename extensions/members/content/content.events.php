@@ -2,10 +2,10 @@
 
 	require_once(TOOLKIT . '/class.ajaxpage.php');
 
-	Class contentExtensionMembersEvents extends AjaxPage {
+	Class contentExtensionmembersEvents extends AjaxPage {
 
 		public function view() {
-			// Ensure we have been set $_POST data from Members events
+			// Ensure we have been set $_POST data from members events
 			if(!array_key_exists('members', $_POST)) {
 				$this->_status = AjaxPage::STATUS_BAD;
 				return;

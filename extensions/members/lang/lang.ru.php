@@ -11,7 +11,7 @@
 	);
 
 	/**
-	 * Members
+	 * members
 	 */
 	$dictionary = array(
 
@@ -42,7 +42,7 @@
 		'%s is too short. It must be at least %d characters.' => 
 		'%s слишком короткий. Как минимум должно содержать в себе %d символов.',
 
-		'A Members section will at minimum contain either a Member: Email or a Member: Username field' => 
+		'A members section will at minimum contain either a member: Email or a member: Username field' => 
 		'Пользовательская сущность должна содержать как минимум одно из этих полей: `Пользователь: Электронная почта` или `Пользователь: имя пользователя`',
 
 		'A role with the name <code>%s</code> already exists.' => 
@@ -75,7 +75,7 @@
 		'Activation error. Code was invalid or has expired.' => 
 		'Ошибка активации. Код активации неверный или устарел.',
 
-		'Active Members Section' => 
+		'Active members Section' => 
 		'Сущность с Пользователями',
 
 		'An error occurred while processing this form.' => 
@@ -90,10 +90,10 @@
 		'Create a Role' => 
 		'Создать Роль',
 
-		'Default Member Role' => 
+		'Default member Role' => 
 		'Роль по умолчанию',
 
-		'Delete Members' => 
+		'Delete members' => 
 		'Удалить пользователя',
 
 		'Delete this Role' => 
@@ -129,52 +129,52 @@
 		'Leave new password field blank to keep the current password' => 
 		'Оставить поле пароля пустым, чтобы сохранить существующий пароль нетронутым.',
 
-		'Member Roles' => 
+		'member Roles' => 
 		'Пользовательские роли',
 
-		'Member is already activated.' => 
+		'member is already activated.' => 
 		'Пользователь уже активирован',
 
-		'Member is not activated.' => 
+		'member is not activated.' => 
 		'Пользователь не активирован.',
 
-		'Member not found.' => 
+		'member not found.' => 
 		'Пользователь не найден',
 
-		'Member will assume the role <strong>%s</strong> when activated.' => 
+		'member will assume the role <strong>%s</strong> when activated.' => 
 		'Пользователь возьмет эту роль <strong>%s</strong> сразу после активации.',
 
-		'Member: Activation' => 
+		'member: Activation' => 
 		'Пользователь: Код активации',
 
-		'Member: Email' => 
+		'member: Email' => 
 		'Пользователь: Электронная почта',
 
-		'Member: Password' => 
+		'member: Password' => 
 		'Пользователь: Пароль',
 
-		'Member: Role' => 
+		'member: Role' => 
 		'Пользователь: Роль',
 
-		'Member: Timezone' => 
+		'member: Timezone' => 
 		'Пользователь: Часовой пояс',
 
-		'Member: Username' => 
+		'member: Username' => 
 		'Пользователь: Имя пользователя',
 
-		'Members' => 
+		'members' => 
 		'Пользователи',
 
-		'Members Timezone' => 
+		'members Timezone' => 
 		'Часовой пояс',
 
-		'Members: Lock Activation' => 
+		'members: Lock Activation' => 
 		'Пользователь: Оставить активацию учетной записи',
 
-		'Members: Lock Role' => 
+		'members: Lock Role' => 
 		'Пользователь: Оставить роль',
 
-		'Members: Update Password' => 
+		'members: Update Password' => 
 		'Пользователь: Обновить пароль',
 
 		'Minimum Length' => 
@@ -183,7 +183,7 @@
 		'Minimum Strength' => 
 		'Минимальная сила',
 
-		'Move Members To' => 
+		'Move members To' => 
 		'Переместить пользователя в',
 
 		'No Activation field found.' => 
@@ -198,7 +198,7 @@
 		'No Identity field found.' => 
 		'Не найдено поля с определением пользователя',
 
-		'No Member section has been specified in %s. Please do this first.' => 
+		'No member section has been specified in %s. Please do this first.' => 
 		'Не определено ни одной сущности с Пользователями.Пожалуйста, сделайте это в первую очередь',
 
 		'No recovery code found.' => 
@@ -228,7 +228,7 @@
 		'Role created at %1$s. <a href="%2$s" accesskey="c">Create another?</a> <a href="%3$s" accesskey="a">View all Roles</a>' => 
 		'Роль создана в %1$. <a href="%2$s" accesskey="c">Добавить еще?</a> <a href="%3$s" accesskey="a">Посмотреть все Роли</a>',
 
-		'Role for Members who are awaiting activation' => 
+		'Role for members who are awaiting activation' => 
 		'Роли, ожидающие активацию',
 
 		'Role not found' => 
@@ -240,10 +240,10 @@
 		'Strong' => 
 		'Сильный',
 
-		'Symphony &ndash; Member Roles' => 
+		'Symphony &ndash; member Roles' => 
 		'Symphony &ndash; Пользовательские роли',
 
-		'Symphony &ndash; Member Roles &ndash; ' => 
+		'Symphony &ndash; member Roles &ndash; ' => 
 		'Symphony &ndash;Пользовательские роли &ndash; ',
 
 		'The Public role cannot be removed' => 
@@ -258,7 +258,7 @@
 		'The role you requested to edit does not exist.' => 
 		'Роль, которую вы хотите отредактировать не существует',
 
-		'There is no Member: Role field in the active Members section. <a href="%s%d/">Add Member: Role field?</a>' => 
+		'There is no member: Role field in the active members section. <a href="%s%d/">Add member: Role field?</a>' => 
 		'Для сущности Пользователи не выбрана ни одна Роль. <a href="%s%d/">Добавит роль?</a>',
 
 		'This is the role assumed by the general public.' => 

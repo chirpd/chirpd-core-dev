@@ -2,7 +2,7 @@
 
     require_once(EXTENSIONS . '/members/lib/class.identity.php');
 
-	Class fieldMemberUsername extends Identity {
+	Class fieldmemberUsername extends Identity {
 
 	/*-------------------------------------------------------------------------
 		Definition:
@@ -10,7 +10,7 @@
 
 		public function __construct(){
 			parent::__construct();
-			$this->_name = __('Member: Username');
+			$this->_name = __('member: Username');
 			$this->set('required', 'yes');
 		}
 
@@ -54,14 +54,14 @@
 	-------------------------------------------------------------------------*/
 
 		/**
-		 * Given a `$needle`, this function will return the Member object.
+		 * Given a `$needle`, this function will return the member object.
 		 * If the `$needle` passed is an array, this function expects a
 		 * key of 'username'
 		 *
 		 * @param string|array $needle
 		 * @return Entry
 		 */
-		public function fetchMemberIDBy($needle) {
+		public function fetchmemberIDBy($needle) {
 			if(is_array($needle)) {
 				extract($needle);
 			}
@@ -70,7 +70,7 @@
 			}
 
 			if(empty($username)) {
-				extension_Members::$_errors[$this->get('element_name')] = array(
+				extension_members::$_errors[$this->get('element_name')] = array(
 					'message' => __('\'%s\' is a required field.', array($this->get('label'))),
 					'type' => 'missing',
 					'label' => $this->get('label')
@@ -84,8 +84,8 @@
 			));
 
 			if(is_null($member_id)) {
-				extension_Members::$_errors[$this->get('element_name')] = array(
-					'message' => __("Member not found."),
+				extension_members::$_errors[$this->get('element_name')] = array(
+					'message' => __("member not found."),
 					'type' => 'invalid',
 					'label' => $this->get('label')
 				);
@@ -116,7 +116,7 @@
 
 			if($id === false) return false;
 
-			fieldMemberUsername::createSettingsTable();
+			fieldmemberUsername::createSettingsTable();
 
 			$fields = array(
 				'field_id' => $id,
@@ -155,7 +155,7 @@
 				}
 
 				// We need to make sure the value doesn't already exist in the Section.
-				$existing = $this->fetchMemberIDBy($username);
+				$existing = $this->fetchmemberIDBy($username);
 
 				// If there is an existing username, and it's not the current object (editing), error.
 				if(!is_null($existing) && $existing != $entry_id) {

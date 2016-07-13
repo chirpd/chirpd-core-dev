@@ -36,7 +36,7 @@
 
 		public function about() {
 			return array(
-				'name' => 'Member: Entry by email',
+				'name' => 'member: Entry by email',
 				'author' => array(
 					'name' => 'Jonathan Simcoe',
 					'website' => 'http://atheycreek',

@@ -1,7 +1,7 @@
 <?php
 
 	/**
-	 * @package interface
+	 * @package, interface
 	 */
 
 	/**

@@ -1,6 +1,6 @@
 <?php
 	/**
-	 * @package toolkit
+	 * @package, toolkit
 	 */
 	/**
 	 * Page is an abstract class that holds an object representation

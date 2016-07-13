@@ -1,6 +1,6 @@
 <?php
 	/**
-	 * @package toolkit
+	 * @package, toolkit
 	 */
 	/**
 	 * `XMLElement` is a class used to simulate PHP's `DOMElement`

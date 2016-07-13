@@ -1,7 +1,7 @@
 <?php
 
 	/**
-	 * @package content
+	 * @package, content
 	 */
 
 	/**
@@ -216,7 +216,7 @@
 			 *  in the With Selected menu. Options should follow the same format
 			 *  expected by `Widget::__SelectBuildOption`. Passed by reference.
 			 */
-			Symphony::ExtensionManager()->notifyMembers('AddCustomActions', '/blueprints/pages/', array(
+			Symphony::ExtensionManager()->notifymembers('AddCustomActions', '/blueprints/pages/', array(
 				'options' => &$options
 			));
 
@@ -628,7 +628,7 @@
 			 * @param array $fields
 			 * @param array $errors
 			 */
-			Symphony::ExtensionManager()->notifyMembers(
+			Symphony::ExtensionManager()->notifymembers(
 				'AppendPageContent',
 				'/blueprints/pages/',
 				array(
@@ -675,7 +675,7 @@
 				 *  An array of the selected rows. The value is usually the ID of the
 				 *  the associated object. 
 				 */
-				Symphony::ExtensionManager()->notifyMembers('CustomActions', '/blueprints/pages/', array(
+				Symphony::ExtensionManager()->notifymembers('CustomActions', '/blueprints/pages/', array(
 					'checked' => $checked
 				));
 
@@ -713,7 +713,7 @@
 				 * @param string $contents
 				 *  The contents of the `$fields['body']`, passed by reference
 				 */
-				Symphony::ExtensionManager()->notifyMembers('PageTemplatePreEdit', '/blueprints/pages/template/', array('file' => $file_abs, 'contents' => &$fields['body']));
+				Symphony::ExtensionManager()->notifymembers('PageTemplatePreEdit', '/blueprints/pages/template/', array('file' => $file_abs, 'contents' => &$fields['body']));
 
 				if(!PageManager::writePageFiles($file_abs, $fields['body'])) {
 					$this->pageAlert(
@@ -734,7 +734,7 @@
 					 * @param string $file
 					 *  The path to the Page Template file
 					 */
-					Symphony::ExtensionManager()->notifyMembers('PageTemplatePostEdit', '/blueprints/pages/template/', array('file' => $file_abs));
+					Symphony::ExtensionManager()->notifymembers('PageTemplatePostEdit', '/blueprints/pages/template/', array('file' => $file_abs));
 
 					redirect(SYMPHONY_URL . '/blueprints/pages/template/' . $this->_context[1] . '/saved/');
 				}
@@ -811,7 +811,7 @@
 				 *  `$fields` array, and the value being the string of the error. `$errors`
 				 *  is passed by reference.
 				 */
-				Symphony::ExtensionManager()->notifyMembers('PagePostValidate', '/blueprints/pages/', array('fields' => $fields, 'errors' => &$errors));
+				Symphony::ExtensionManager()->notifymembers('PagePostValidate', '/blueprints/pages/', array('fields' => $fields, 'errors' => &$errors));
 
 				if(empty($this->_errors)) {
 
@@ -903,7 +903,7 @@
 							 * @param array $fields
 							 *  The `$_POST['fields']` array passed by reference
 							 */
-							Symphony::ExtensionManager()->notifyMembers('PagePreCreate', '/blueprints/pages/', array('fields' => &$fields));
+							Symphony::ExtensionManager()->notifymembers('PagePreCreate', '/blueprints/pages/', array('fields' => &$fields));
 
 							if(!$page_id = PageManager::add($fields)) {
 								$this->pageAlert(
@@ -927,7 +927,7 @@
 								 * @param array $fields
 								 *  An associative array of data that was just saved for this page
 								 */
-								Symphony::ExtensionManager()->notifyMembers('PagePostCreate', '/blueprints/pages/', array('page_id' => $page_id, 'fields' => &$fields));
+								Symphony::ExtensionManager()->notifymembers('PagePostCreate', '/blueprints/pages/', array('page_id' => $page_id, 'fields' => &$fields));
 
 								$redirect = "/blueprints/pages/edit/{$page_id}/created/{$parent_link_suffix}";
 							}
@@ -950,7 +950,7 @@
 							 * @param array $fields
 							 *  The `$_POST['fields']` array passed by reference
 							 */
-							Symphony::ExtensionManager()->notifyMembers('PagePreEdit', '/blueprints/pages/', array('page_id' => $page_id, 'fields' => &$fields));
+							Symphony::ExtensionManager()->notifymembers('PagePreEdit', '/blueprints/pages/', array('page_id' => $page_id, 'fields' => &$fields));
 
 							if(!PageManager::edit($page_id, $fields, true)) {
 								return $this->pageAlert(
@@ -974,7 +974,7 @@
 								 * @param array $fields
 								 *  An associative array of data that was just saved for this page
 								 */
-								Symphony::ExtensionManager()->notifyMembers('PagePostEdit', '/blueprints/pages/', array('page_id' => $page_id, 'fields' => $fields));
+								Symphony::ExtensionManager()->notifymembers('PagePostEdit', '/blueprints/pages/', array('page_id' => $page_id, 'fields' => $fields));
 
 								$redirect = "/blueprints/pages/edit/{$page_id}/saved/{$parent_link_suffix}";
 							}
@@ -1000,7 +1000,7 @@
 						 * @param array $types
 						 *  An associative array of the types for this page passed by reference.
 						 */
-						Symphony::ExtensionManager()->notifyMembers('PageTypePreCreate', '/blueprints/pages/', array('page_id' => $page_id, 'types' => &$types));
+						Symphony::ExtensionManager()->notifymembers('PageTypePreCreate', '/blueprints/pages/', array('page_id' => $page_id, 'types' => &$types));
 
 						// Assign page types:
 						PageManager::addPageTypesToPage($page_id, $types);
@@ -1045,7 +1045,7 @@
 			 *  The absolute path that the Developer will be redirected to
 			 *  after the Pages are deleted
 			 */
-			Symphony::ExtensionManager()->notifyMembers('PagePreDelete', '/blueprints/pages/', array('page_ids' => &$pages, 'redirect' => &$redirect));
+			Symphony::ExtensionManager()->notifymembers('PagePreDelete', '/blueprints/pages/', array('page_ids' => &$pages, 'redirect' => &$redirect));
 
 			foreach($pages as $page_id) {
 				$page = PageManager::fetchPageByID($page_id);
@@ -1099,7 +1099,7 @@
 				 * @param array $page_ids
 				 *  The page ID's that were just deleted
 				 */
-				Symphony::ExtensionManager()->notifyMembers('PagePostDelete', '/blueprints/pages/', array('page_ids' => $deleted_page_ids));
+				Symphony::ExtensionManager()->notifymembers('PagePostDelete', '/blueprints/pages/', array('page_ids' => $deleted_page_ids));
 				redirect($redirect);
 			}
 		}

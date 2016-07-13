@@ -49,7 +49,7 @@
 			 *  If editing an entry, this parameter will be an integer,
 			 *  otherwise null.
 			 */
-			Symphony::ExtensionManager()->notifyMembers(
+			Symphony::ExtensionManager()->notifymembers(
 				'EventPreSaveFilter',
 				'/frontend/',
 				array(
@@ -324,7 +324,7 @@
 			 *  the message (string) an optionally an associative array
 			 *  of additional attributes to add to the filter element.
 			 */
-			Symphony::ExtensionManager()->notifyMembers('EventPostSaveFilter', '/frontend/', array(
+			Symphony::ExtensionManager()->notifymembers('EventPostSaveFilter', '/frontend/', array(
 				'entry_id' => $entry->get('id'),
 				'fields' => $fields,
 				'entry' => $entry,
@@ -367,7 +367,7 @@
 			 *  of additional attributes to add to the filter element.
 			 * @param Entry $entry
 			 */
-			Symphony::ExtensionManager()->notifyMembers(
+			Symphony::ExtensionManager()->notifymembers(
 				'EventFinalSaveFilter', '/frontend/', array(
 					'fields'	=> $fields,
 					'event'		=> $event,

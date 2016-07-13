@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <extension id="export_ensemble" status="released" xmlns="http://getsymphony.com/schemas/extension/1.0">
 	<name>Export Ensemble</name>
-	<description>Export your Symphony website as an installer package.</description>
+	<description>Export your Symphony website as an installer package,.</description>
 	<repo type="github">https://github.com/symphonycms/export_ensemble</repo>
 	<url type="discuss">http://getsymphony.com/discuss/thread/32777/</url>
 	<types>

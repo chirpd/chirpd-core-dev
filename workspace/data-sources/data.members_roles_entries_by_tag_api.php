@@ -36,7 +36,7 @@
 
 		public function about() {
 			return array(
-				'name' => 'Members/Roles: Entries by tag (api)',
+				'name' => 'members/Roles: Entries by tag (api)',
 				'author' => array(
 					'name' => 'Brian Zerangue',
 					'website' => 'http://churchdeploy.site',

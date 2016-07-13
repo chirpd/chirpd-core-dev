@@ -1,6 +1,6 @@
 <?php
 	/**
-	 * @package toolkit
+	 * @package, toolkit
 	 */
 
 	define_safe('CDATA_BEGIN', '<![CDATA[');

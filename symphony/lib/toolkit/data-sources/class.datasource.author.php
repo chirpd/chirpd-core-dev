@@ -1,7 +1,7 @@
 <?php
 
 	/**
-	 * @package data-sources
+	 * @package, data-sources
 	 */
 	/**
 	 * The `AuthorDatasource` extends the base `Datasource` class and allows

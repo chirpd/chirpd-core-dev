@@ -1,6 +1,6 @@
 <?php
 	/**
-	 * @package cryptography
+	 * @package, cryptography
 	 */
 	/**
 	 * PBKDF2 is a cryptography class for hashing and comparing messages

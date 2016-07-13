@@ -1,7 +1,7 @@
 <?php
 
 	/**
-	 * @package content
+	 * @package, content
 	 */
 
 	/**
@@ -168,7 +168,7 @@
 			 *  in the With Selected menu. Options should follow the same format
 			 *  expected by `Widget::__SelectBuildOption`. Passed by reference.
 			 */
-			Symphony::ExtensionManager()->notifyMembers('AddCustomActions', '/system/extensions/', array(
+			Symphony::ExtensionManager()->notifymembers('AddCustomActions', '/system/extensions/', array(
 				'options' => &$options
 			));
 
@@ -194,7 +194,7 @@
 			 *  An array of the selected rows. The value is usually the ID of the
 			 *  the associated object.
 			 */
-			Symphony::ExtensionManager()->notifyMembers('CustomActions', '/system/extensions/', array(
+			Symphony::ExtensionManager()->notifymembers('CustomActions', '/system/extensions/', array(
 				'checked' => $checked
 			));
 
@@ -213,7 +213,7 @@
 							 * @param array $extensions
 							 *  An array of all the extension name's to be enabled, passed by reference
 							 */
-							Symphony::ExtensionManager()->notifyMembers('ExtensionPreEnable', '/system/extensions/', array('extensions' => &$checked));
+							Symphony::ExtensionManager()->notifymembers('ExtensionPreEnable', '/system/extensions/', array('extensions' => &$checked));
 
 							foreach($checked as $name){
 								if(Symphony::ExtensionManager()->enable($name) === false) return;
@@ -232,7 +232,7 @@
 							 * @param array $extensions
 							 *  An array of all the extension name's to be disabled, passed by reference
 							 */
-							Symphony::ExtensionManager()->notifyMembers('ExtensionPreDisable', '/system/extensions/', array('extensions' => &$checked));
+							Symphony::ExtensionManager()->notifymembers('ExtensionPreDisable', '/system/extensions/', array('extensions' => &$checked));
 
 							foreach($checked as $name){
 								Symphony::ExtensionManager()->disable($name);
@@ -251,7 +251,7 @@
 							 * @param array $extensions
 							 *  An array of all the extension name's to be uninstalled, passed by reference
 							 */
-							Symphony::ExtensionManager()->notifyMembers('ExtensionPreUninstall', '/system/extensions/', array('extensions' => &$checked));
+							Symphony::ExtensionManager()->notifymembers('ExtensionPreUninstall', '/system/extensions/', array('extensions' => &$checked));
 
 							foreach($checked as $name){
 								Symphony::ExtensionManager()->uninstall($name);

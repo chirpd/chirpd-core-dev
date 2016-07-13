@@ -40,7 +40,7 @@
 
 		public function about() {
 			return array(
-				'name' => 'Members/Roles: Entries by tag',
+				'name' => 'members/Roles: Entries by tag',
 				'author' => array(
 					'name' => 'Jonathan Simcoe',
 					'website' => 'http://atheycreek.dev',

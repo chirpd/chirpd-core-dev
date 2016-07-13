@@ -352,7 +352,7 @@ VALUES
 	(8,12495,'ustream','UStream','ustream','UStream',1,'UStream'),
 	(9,12975,'spacer','Spacer','spacer','Spacer',1,'Spacer'),
 	(10,13077,'teachings','Teachings','teachings','Teachings',1,'Teachings'),
-	(12,112,'members-roles','Members/Roles','members-roles','Members/Roles',1,'Members/Roles'),
+	(12,112,'members-roles','members/Roles','members-roles','members/Roles',1,'members/Roles'),
 	(13,13528,'search','Search','search','Search',1,'Search'),
 	(14,13577,'events-recurring','Events (recurring)','events-recurring','Events (recurring)',2,'Events (recurring)');
 
@@ -3704,7 +3704,7 @@ VALUES
 	(320,5,'/system/preferences/','AddCustomPreferenceFieldsets','appendPreferences'),
 	(323,25,'/system/preferences/','AddCustomPreferenceFieldsets','appendPreferences'),
 	(325,6,'/system/preferences/','AddCustomPreferenceFieldsets','appendPreferences'),
-	(337,9,'/frontend/','FrontendParamsResolve','addMemberDetailsToPageParams'),
+	(337,9,'/frontend/','FrontendParamsResolve','addmemberDetailsToPageParams'),
 	(336,9,'/frontend/','FrontendPageResolved','checkFrontendPagePermissions'),
 	(305,31,'/backend/','InitaliseAdminPageHead','initializeAdmin'),
 	(317,26,'/backend/','DashboardPanelTypes','dashboard_panel_types'),
@@ -3842,10 +3842,10 @@ VALUES
 	(131,'Tags','tags','subsectionmanager',10,'no',3,'main','yes'),
 	(133,'Description','description','multilingual',17,'no',2,'main','yes'),
 	(134,'Role','role','subsectionmanager',18,'yes',1,'main','yes'),
-	(135,'Member','member','subsectionmanager',18,'yes',0,'main','yes'),
+	(135,'member','member','subsectionmanager',18,'yes',0,'main','yes'),
 	(136,'Locations','locations','subsectionmanager',6,'no',3,'sidebar','yes'),
 	(137,'Tags','tags','subsectionmanager',6,'no',6,'sidebar','yes'),
-	(138,'Member/Role','member-role','subsectionmanager',6,'no',4,'sidebar','yes'),
+	(138,'member/Role','member-role','subsectionmanager',6,'no',4,'sidebar','yes'),
 	(141,'Parent','parent','subsectionmanager',3,'no',4,'sidebar','yes'),
 	(145,'Type','type','subsectionmanager',6,'no',7,'sidebar','yes'),
 	(147,'Context','context','multilingual',17,'yes',1,'main','yes'),
@@ -3873,7 +3873,7 @@ VALUES
 	(176,'Text','text','subsectionmanager',21,'no',7,'main','no'),
 	(177,'Verses','verses','subsectionmanager',21,'no',8,'main','no'),
 	(245,'Filter','filter','filter',21,'no',14,'main','no'),
-	(179,'Member/Role','member-role','subsectionmanager',21,'no',9,'main','no'),
+	(179,'member/Role','member-role','subsectionmanager',21,'no',9,'main','no'),
 	(214,'Hide','hide','checkbox',21,'no',12,'sidebar','no'),
 	(181,'Childcare','childcare','checkbox',21,'no',10,'sidebar','no'),
 	(182,'Type','type','subsectionmanager',21,'no',11,'main','no'),
@@ -3910,7 +3910,7 @@ VALUES
 	(225,'Hide','hide','checkbox',25,'no',2,'sidebar','yes'),
 	(226,'Filter','filter','filter',8,'no',7,'main','no'),
 	(227,'Show everywhere','show-everywhere','checkbox',26,'no',5,'sidebar','yes'),
-	(230,'Member/Role','member-role','subsectionmanager',13,'no',8,'main','no'),
+	(230,'member/Role','member-role','subsectionmanager',13,'no',8,'main','no'),
 	(229,'Poster','poster','uniqueupload',13,'no',10,'sidebar','yes'),
 	(231,'Teachings','teachings','subsectionmanager',27,'no',2,'main','yes'),
 	(232,'Filter','filter','filter',27,'no',5,'main','no'),
@@ -5331,7 +5331,7 @@ LOCK TABLES `sym_members_roles` WRITE;
 INSERT INTO `sym_members_roles` (`id`, `name`, `handle`)
 VALUES
 	(1,'Public','public'),
-	(2,'Member','member'),
+	(2,'member','member'),
 	(3,'Not yet activated','not-yet-activated'),
 	(4,'Staff','staff');
 
@@ -11687,7 +11687,7 @@ LOCK TABLES `sym_sections` WRITE;
 
 INSERT INTO `sym_sections` (`id`, `name`, `handle`, `sortorder`, `entry_order`, `entry_order_direction`, `hidden`, `navigation_group`)
 VALUES
-	(1,'Members','members',15,'4','asc','no','Members'),
+	(1,'members','members',15,'4','asc','no','members'),
 	(2,'Misc','misc',21,'14','asc','no','Structure'),
 	(3,'Tags','tags',4,'23','asc','no','Content'),
 	(5,'Locations','locations',3,'27','asc','no','Content'),
@@ -11701,8 +11701,8 @@ VALUES
 	(13,'Teachings','teachings',12,'109','desc','no','Teachings'),
 	(19,'Events: Types','events-types',11,NULL,'asc','no','Events'),
 	(15,'Teachings: Tags','teachings-tags',14,'127','asc','no','Teachings'),
-	(17,'Members: Roles: Types','members-roles-types',17,'132','asc','no','Members'),
-	(18,'Members: Roles','members-roles',16,'242','asc','no','Members'),
+	(17,'members: Roles: Types','members-roles-types',17,'132','asc','no','members'),
+	(18,'members: Roles','members-roles',16,'242','asc','no','members'),
 	(22,'Videos','videos',8,'183','asc','no','Content'),
 	(21,'Events: Recurring','events-recurring',10,'244','asc','no','Events'),
 	(24,'Twitter','twitter',6,NULL,'asc','no','Content'),

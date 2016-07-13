@@ -11,23 +11,23 @@
 	);
 
 	/**
-	 * Members
+	 * members
 	 */
 	$dictionary = array(
 
-		'Member Roles' => 
+		'member Roles' => 
 		'Ruoli utenza',
 
-		'Members Timezone' => 
+		'members Timezone' => 
 		'Fuso orario',
 
-		'Members: Lock Role' => 
+		'members: Lock Role' => 
 		'Utenza: blocca ruolo',
 
-		'Members: Lock Activation' => 
+		'members: Lock Activation' => 
 		'Utenza: blocca attivazione',
 
-		'Members: Update Password' => 
+		'members: Update Password' => 
 		'Utenza: aggiorna la password',
 
 		'Email Template Filter' => 
@@ -36,13 +36,13 @@
 		'Email Template Manager' => 
 		false,
 
-		'Members' => 
+		'members' => 
 		'Utenti',
 
-		'Active Members Section' => 
+		'Active members Section' => 
 		'Sezione per l\'utenza',
 
-		'A Members section will at minimum contain either a Member: Email or a Member: Username field' => 
+		'A members section will at minimum contain either a member: Email or a member: Username field' => 
 		'Una sezione &#232; valida se contiene come minimo i campi "Utenza: Email" o "Utenza: Nome utente"',
 
 		'The page you have requested has restricted access permissions.' => 
@@ -57,25 +57,25 @@
 		'An error occurred while processing this form.' => 
 		'&#200; stato riscontrato un errore durante il salvataggio delle modifiche.',
 
-		'There is no Member: Role field in the active Members section. <a href="%s%d/">Add Member: Role field?</a>' => 
+		'There is no member: Role field in the active members section. <a href="%s%d/">Add member: Role field?</a>' => 
 		'Non esiste alcun campo "Utenza: Ruolo" nella sezione attiva. <a href="%s%d/">Vuoi aggiungerlo?</a>',
 
 		'Create a Role' => 
 		'Crea un nuovo ruolo',
 
-		'No Member section has been specified in <a href="%s">Preferences</a>. Please do this first.' => 
+		'No member section has been specified in <a href="%s">Preferences</a>. Please do this first.' => 
 		'Prima di proseguire, assicurati di specificare una sezione per l\'utenza nelle <a href="%s">Preferenze</a>.',
 
-		'No Member section has been specified in %s. Please do this first.' => 
+		'No member section has been specified in %s. Please do this first.' => 
 		'Prima di proseguire, assicurati di specificare una sezione per l\'utenza in %s.',
 
 		'This is the role assumed by the general public.' => 
 		'Questo &#232; il ruolo di default a cui apparterr&#224; un nuovo utente.',
 
-		'Delete Members' => 
+		'Delete members' => 
 		'Elimina utenti',
 
-		'Move Members To' => 
+		'Move members To' => 
 		'Sposta utenti in',
 
 		'The role you requested to edit does not exist.' => 
@@ -90,10 +90,10 @@
 		'Role created at %1$s. <a href="%2$s" accesskey="c">Create another?</a> <a href="%3$s" accesskey="a">View all Roles</a>' => 
 		'Ruolo creato %1$s <a href="%2$s" accesskey="c">Vuoi crearne un altro?</a> <a href="%3$s" accesskey="a">Visualizza tutti i ruoli</a>',
 
-		'Symphony &ndash; Member Roles' => 
+		'Symphony &ndash; member Roles' => 
 		'Symphony &ndash; Ruoli utenza',
 
-		'Symphony &ndash; Member Roles &ndash; ' => 
+		'Symphony &ndash; member Roles &ndash; ' => 
 		'Symphony &ndash; Ruoli utenza &ndash; ',
 
 		'Event Level Permissions' => 
@@ -159,10 +159,10 @@
 		'%s is a required field.' => 
 		'\'%s\' &#232; un campo obbligatorio.',
 
-		'Member not found.' => 
+		'member not found.' => 
 		'Utente non trovato.',
 
-		'Member is already activated.' => 
+		'member is already activated.' => 
 		'L\'attivazione per questo utente &#232; stata gi&#224; confermata.',
 
 		'Activation error. Code was invalid or has expired.' => 
@@ -195,7 +195,7 @@
 		'Recovery code has expired.' => 
 		'Il codice di recupero password &#232; scaduto.',
 
-		'Member: Activation' => 
+		'member: Activation' => 
 		'Utenza: Attivazione',
 
 		'Activation Code Expiry' => 
@@ -207,7 +207,7 @@
 		'How long a member\'s activation code will be valid for before it expires (in minutes)' => 
 		'Quanto a lungo il codice d\'attivazione rimane valido prima di scadere (in minuti)',
 
-		'Role for Members who are awaiting activation' => 
+		'Role for members who are awaiting activation' => 
 		'Ruolo di default per gli utenti in attesa di attivazione',
 
 		'%s Prevent unactivated members from logging in' => 
@@ -237,7 +237,7 @@
 		'Activated %s' => 
 		'Attivato in data %s',
 
-		'Member: Email' => 
+		'member: Email' => 
 		'Utenza: Email',
 
 		'%s contains invalid characters.' => 
@@ -246,7 +246,7 @@
 		'%s is already taken.' => 
 		'%s non &#232; disponibile.',
 
-		'Member: Password' => 
+		'member: Password' => 
 		'Utenza: Password',
 
 		'Weak' => 
@@ -309,25 +309,25 @@
 		'Confirm' => 
 		'Conferma',
 
-		'Member: Role' => 
+		'member: Role' => 
 		'Utenza: Ruolo',
 
-		'Default Member Role' => 
+		'Default member Role' => 
 		'Ruolo di default',
 
-		'Member will assume the role <strong>%s</strong> when activated.' => 
+		'member will assume the role <strong>%s</strong> when activated.' => 
 		'Una volta confermata l\'attivazione, l\'utente assumer&#224; il ruolo <strong>%s</strong>.',
 
-		'Member: Timezone' => 
+		'member: Timezone' => 
 		'Utenza: Fuso orario',
 
 		'Available Zones' => 
 		'Zone disponibili',
 
-		'Member: Username' => 
+		'member: Username' => 
 		'Utenza: Nome utente',
 
-		'Member is not activated.' => 
+		'member is not activated.' => 
 		'L\'utente non &#232; stato ancora attivato.',
 
 	);

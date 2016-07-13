@@ -1,7 +1,7 @@
 <?php
 
 	/**
-	 * @package toolkit
+	 * @package, toolkit
 	 */
 	/**
 	 * The AdministrationPage class represents a Symphony backend page.
@@ -401,8 +401,8 @@
 			 * @param string $context
 			 *  '/backend/'
 			 */
-			Symphony::ExtensionManager()->notifyMembers('InitialiseAdminPageHead', '/backend/');
-			Symphony::ExtensionManager()->notifyMembers('InitaliseAdminPageHead', '/backend/');
+			Symphony::ExtensionManager()->notifymembers('InitialiseAdminPageHead', '/backend/');
+			Symphony::ExtensionManager()->notifymembers('InitaliseAdminPageHead', '/backend/');
 
 			$this->addHeaderToPage('Content-Type', 'text/html; charset=UTF-8');
 			$this->addHeaderToPage('Cache-Control', 'no-cache, must-revalidate, max-age=0');
@@ -654,7 +654,7 @@
 			 * @param string $context
 			 *  '/backend/'
 			 */
-			Symphony::ExtensionManager()->notifyMembers('AppendPageAlert', '/backend/');
+			Symphony::ExtensionManager()->notifymembers('AppendPageAlert', '/backend/');
 
 			// Errors first, success next, then notices.
 			function sortAlerts($a, $b) {
@@ -707,7 +707,7 @@
 			 * @param array $nav
 			 *  An associative array of the current navigation, passed by reference
 			 */
-			Symphony::ExtensionManager()->notifyMembers('NavigationPreRender', '/backend/', array('navigation' => &$nav));
+			Symphony::ExtensionManager()->notifymembers('NavigationPreRender', '/backend/', array('navigation' => &$nav));
 
 			$navElement = new XMLElement('nav', NULL, array('id' => 'nav'));
 			$contentNav = new XMLElement('ul', NULL, array('class' => 'content'));
@@ -1027,7 +1027,7 @@
 			 * '/backend/'
 			 * @param array $navigation
 			 */
-			Symphony::ExtensionManager()->notifyMembers(
+			Symphony::ExtensionManager()->notifymembers(
 				'ExtensionsAddToNavigation', '/backend/', array('navigation' => &$nav)
 			);
 

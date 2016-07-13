@@ -1,7 +1,7 @@
 <?php
 
 	/**
-	 * @package core
+	 * @package, core
 	 */
 
 	/**
@@ -418,7 +418,7 @@
 			 *  class, `pageroot` the rootpage, before any extra URL params and `context` can
 			 *  provide additional information about the page
 			 */
-			Symphony::ExtensionManager()->notifyMembers('AdminPagePostCallback', '/backend/', array(
+			Symphony::ExtensionManager()->notifymembers('AdminPagePostCallback', '/backend/', array(
 				'page' => $this->_currentPage,
 				'parts' => $bits,
 				'callback' => &$callback
@@ -462,7 +462,7 @@
 			 *  extends HTMLPage. The Symphony backend uses a convention of contentPageName
 			 *  as the class that extends the HTMLPage
 			 */
-			Symphony::ExtensionManager()->notifyMembers('AdminPagePreGenerate', '/backend/', array('oPage' => &$this->Page));
+			Symphony::ExtensionManager()->notifymembers('AdminPagePreGenerate', '/backend/', array('oPage' => &$this->Page));
 
 			$output = $this->Page->generate();
 
@@ -474,7 +474,7 @@
 			 * @param string $output
 			 *  The resulting backend page HTML as a string, passed by reference
 			 */
-			Symphony::ExtensionManager()->notifyMembers('AdminPagePostGenerate', '/backend/', array('output' => &$output));
+			Symphony::ExtensionManager()->notifymembers('AdminPagePostGenerate', '/backend/', array('output' => &$output));
 
 			Symphony::Profiler()->sample('Page built');
 

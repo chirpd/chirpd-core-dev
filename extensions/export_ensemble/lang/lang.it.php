@@ -43,7 +43,7 @@
 		'Create' => 
 		'Crea l\'archivio',
 
-		'Packages entire site as a <code>.zip</code> archive for download.' => 
+		'package,s entire site as a <code>.zip</code> archive for download.' => 
 		'Comprime l\'intero sito in un pacchetto <code>.zip</code> pronto da scaricare.',
 
 	);

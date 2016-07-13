@@ -12,7 +12,7 @@
 
 		public static function about(){
 			return array(
-				'name' => 'Members: Create',
+				'name' => 'members: Create',
 				'author' => array(
 					'name' => 'Admin Admin',
 					'website' => 'http://churchdeploy',
@@ -74,7 +74,7 @@
   &lt;label>Role
     &lt;select name="fields[role]">
       &lt;option value="1">Public&lt;/option>
-      &lt;option value="2">Member&lt;/option>
+      &lt;option value="2">member&lt;/option>
       &lt;option value="3">Not yet activated&lt;/option>
     &lt;/select>
   &lt;/label>

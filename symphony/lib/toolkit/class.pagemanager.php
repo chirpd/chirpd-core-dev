@@ -1,7 +1,7 @@
 <?php
 
 	/**
-	 * @package toolkit
+	 * @package, toolkit
 	 */
 	/**
 	 * The `PageManager` class is responsible for providing basic CRUD operations
@@ -176,7 +176,7 @@
 			 * @param string $contents
 			 *  The contents of the `$data`, passed by reference
 			 */
-			Symphony::ExtensionManager()->notifyMembers('PageTemplatePreCreate', '/blueprints/pages/', array('file' => $new, 'contents' => &$data));
+			Symphony::ExtensionManager()->notifymembers('PageTemplatePreCreate', '/blueprints/pages/', array('file' => $new, 'contents' => &$data));
 
 			if(PageManager::writePageFiles($new, $data)) {
 				// Remove the old file, in the case of a rename
@@ -194,7 +194,7 @@
 				 * @param string $file
 				 *  The path to the Page Template file
 				 */
-				Symphony::ExtensionManager()->notifyMembers('PageTemplatePostCreate', '/blueprints/pages/', array('file' => $new));
+				Symphony::ExtensionManager()->notifymembers('PageTemplatePostCreate', '/blueprints/pages/', array('file' => $new));
 
 				return true;
 			}

@@ -1,7 +1,7 @@
 <?php
 
 	/**
-	 * @package subsectionmanager
+	 * @package, subsectionmanager
 	 */
 	/**
 	 * This field provides inline subsection management.

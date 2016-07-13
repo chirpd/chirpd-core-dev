@@ -26,7 +26,7 @@
 		'Create' => 
 		'Crează',
 
-		'Packages entire site as a <code>.zip</code> archive for download.' => 
+		'package,s entire site as a <code>.zip</code> archive for download.' => 
 		'Împachetează întregul site într-o arhivă <code>.zip</code> pentru descărcare.',
 
 		'Symphony needs at least one language file to be present before installation can proceed.' => 

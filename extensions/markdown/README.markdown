@@ -1,7 +1,7 @@
 # Markdown
 
 This extension provides Markdown formatting for fields.
-It is part of the Symphony core download package.
+It is part of the Symphony core download package,.
 
 - Version: 1.17
 - Author: Symphony Team

@@ -1,7 +1,7 @@
 <?php
 
 	/**
-	 * @package content
+	 * @package, content
 	 */
 
 	/**
@@ -108,7 +108,7 @@
 			 * @param array $errors
 			 *  An array of errors
 			 */
-			Symphony::ExtensionManager()->notifyMembers('AddCustomPreferenceFieldsets', '/system/preferences/', array(
+			Symphony::ExtensionManager()->notifymembers('AddCustomPreferenceFieldsets', '/system/preferences/', array(
 				'wrapper' => &$this->Form,
 				'errors' => $this->_errors
 			));
@@ -136,7 +136,7 @@
 			 * @param string $context
 			 * '/system/preferences/'
 			 */
-			Symphony::ExtensionManager()->notifyMembers('CustomActions', '/system/preferences/');
+			Symphony::ExtensionManager()->notifymembers('CustomActions', '/system/preferences/');
 
 			if (isset($_POST['action']['save'])) {
 				$settings = $_POST['settings'];
@@ -153,7 +153,7 @@
 				 * @param array $errors
 				 *  An array of errors passed by reference
 				 */
-				Symphony::ExtensionManager()->notifyMembers('Save', '/system/preferences/', array('settings' => &$settings, 'errors' => &$this->_errors));
+				Symphony::ExtensionManager()->notifymembers('Save', '/system/preferences/', array('settings' => &$settings, 'errors' => &$this->_errors));
 
 				if (!is_array($this->_errors) || empty($this->_errors)) {
 

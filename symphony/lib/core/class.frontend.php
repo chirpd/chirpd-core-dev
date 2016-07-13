@@ -1,7 +1,7 @@
 <?php
 
 	/**
-	 * @package core
+	 * @package, core
 	 */
 
 	/**
@@ -98,7 +98,7 @@
 			 * @param string $context
 			 *  '/frontend/'
 			 */
-			Symphony::ExtensionManager()->notifyMembers('FrontendInitialised', '/frontend/');
+			Symphony::ExtensionManager()->notifymembers('FrontendInitialised', '/frontend/');
 
 			$output = self::$_page->generate($page);
 

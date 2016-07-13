@@ -1,6 +1,6 @@
 <?php
 	/**
-	 * @package content
+	 * @package, content
 	 */
 
 	/**
@@ -179,7 +179,7 @@
 			 * The current where statement, or null if not set
 			 * @param string $joins
 			 */
-			Symphony::ExtensionManager()->notifyMembers('AdjustPublishFiltering', '/publish/', array('section-id' => $section_id, 'where' => &$where, 'joins' => &$joins));
+			Symphony::ExtensionManager()->notifymembers('AdjustPublishFiltering', '/publish/', array('section-id' => $section_id, 'where' => &$where, 'joins' => &$joins));
 
 			// Check that the filtered query fails that the filter is dropped and an
 			// error is logged. #841 ^BA
@@ -254,7 +254,7 @@
 			 * @param integer $section_id
 			 * The current Section ID
 			 */
-			Symphony::ExtensionManager()->notifyMembers('AddCustomPublishColumn', '/publish/', array('tableHead' => &$aTableHead, 'section_id' => $section->get('id')));
+			Symphony::ExtensionManager()->notifymembers('AddCustomPublishColumn', '/publish/', array('tableHead' => &$aTableHead, 'section_id' => $section->get('id')));
 
 			// Table Body
 			$aTableBody = array();
@@ -370,7 +370,7 @@
 					 * @param Entry $entry
 					 *  The entry object for this row
 					 */
-					Symphony::ExtensionManager()->notifyMembers('AddCustomPublishColumnData', '/publish/', array(
+					Symphony::ExtensionManager()->notifymembers('AddCustomPublishColumnData', '/publish/', array(
 						'tableData' => &$tableData,
 						'section_id' => $section->get('id'),
 						'entry_id' => $entry,
@@ -441,7 +441,7 @@
 			 *  in the With Selected menu. Options should follow the same format
 			 *  expected by `Widget::__SelectBuildOption`. Passed by reference.
 			 */
-			Symphony::ExtensionManager()->notifyMembers('AddCustomActions', '/publish/', array(
+			Symphony::ExtensionManager()->notifymembers('AddCustomActions', '/publish/', array(
 				'options' => &$options
 			));
 
@@ -519,7 +519,7 @@
 				 *  An array of the selected rows. The value is usually the ID of the
 				 *  the associated object.
 				 */
-				Symphony::ExtensionManager()->notifyMembers('CustomActions', '/publish/', array(
+				Symphony::ExtensionManager()->notifymembers('CustomActions', '/publish/', array(
 					'checked' => $checked
 				));
 
@@ -537,7 +537,7 @@
 						 * @param array $entry_id
 						 *  An array of Entry ID's passed by reference
 						 */
-						Symphony::ExtensionManager()->notifyMembers('EntryPreDelete', '/publish/', array('entry_id' => &$checked));
+						Symphony::ExtensionManager()->notifymembers('EntryPreDelete', '/publish/', array('entry_id' => &$checked));
 
 						EntryManager::delete($checked);
 
@@ -552,7 +552,7 @@
 						 * @param array $entry_id
 						 *  An array of Entry ID's that were deleted.
 						 */
-						Symphony::ExtensionManager()->notifyMembers('EntryPostDelete', '/publish/', array('entry_id' => $checked));
+						Symphony::ExtensionManager()->notifymembers('EntryPostDelete', '/publish/', array('entry_id' => $checked));
 
 						redirect($_SERVER['REQUEST_URI']);
 
@@ -582,7 +582,7 @@
 								 * @param Entry $entry
 								 * @param array $fields
 								 */
-								Symphony::ExtensionManager()->notifyMembers('EntryPreEdit', '/publish/edit/', array(
+								Symphony::ExtensionManager()->notifymembers('EntryPreEdit', '/publish/edit/', array(
 									'section' => $section,
 									'entry' => &$entry[0],
 									'fields' => $fields
@@ -600,7 +600,7 @@
 								 * @param Entry $entry
 								 * @param array $fields
 								 */
-								Symphony::ExtensionManager()->notifyMembers('EntryPostEdit', '/publish/edit/', array(
+								Symphony::ExtensionManager()->notifymembers('EntryPostEdit', '/publish/edit/', array(
 									'section' => $section,
 									'entry' => $entry[0],
 									'fields' => $fields
@@ -807,7 +807,7 @@
 					 * @param Entry $entry
 					 * @param array $fields
 					 */
-					Symphony::ExtensionManager()->notifyMembers('EntryPreCreate', '/publish/new/', array('section' => $section, 'entry' => &$entry, 'fields' => &$fields));
+					Symphony::ExtensionManager()->notifymembers('EntryPreCreate', '/publish/new/', array('section' => $section, 'entry' => &$entry, 'fields' => &$fields));
 
 					// Check to see if the dancing was premature
 					if(!$entry->commit()){
@@ -826,7 +826,7 @@
 						 * @param Entry $entry
 						 * @param array $fields
 						 */
-						Symphony::ExtensionManager()->notifyMembers('EntryPostCreate', '/publish/new/', array('section' => $section, 'entry' => $entry, 'fields' => $fields));
+						Symphony::ExtensionManager()->notifymembers('EntryPostCreate', '/publish/new/', array('section' => $section, 'entry' => $entry, 'fields' => $fields));
 
 						$prepopulate_querystring = '';
 						if(isset($_POST['prepopulate'])){
@@ -907,7 +907,7 @@
 			 * @param Entry $entry
 			 * @param array $fields
 			 */
-			Symphony::ExtensionManager()->notifyMembers('EntryPreRender', '/publish/edit/', array(
+			Symphony::ExtensionManager()->notifymembers('EntryPreRender', '/publish/edit/', array(
 				'section' => $section,
 				'entry' => &$entry,
 				'fields' => $fields
@@ -1104,7 +1104,7 @@
 					 * @param Entry $entry
 					 * @param array $fields
 					 */
-					Symphony::ExtensionManager()->notifyMembers('EntryPreEdit', '/publish/edit/', array('section' => $section, 'entry' => &$entry, 'fields' => $fields));
+					Symphony::ExtensionManager()->notifymembers('EntryPreEdit', '/publish/edit/', array('section' => $section, 'entry' => &$entry, 'fields' => $fields));
 
 					// Check to see if the dancing was premature
 					if(!$entry->commit()){
@@ -1123,7 +1123,7 @@
 						 * @param Entry $entry
 						 * @param array $fields
 						 */
-						Symphony::ExtensionManager()->notifyMembers('EntryPostEdit', '/publish/edit/', array('section' => $section, 'entry' => $entry, 'fields' => $fields));
+						Symphony::ExtensionManager()->notifymembers('EntryPostEdit', '/publish/edit/', array('section' => $section, 'entry' => $entry, 'fields' => $fields));
 
 						$prepopulate_querystring = '';
 						if(isset($_POST['prepopulate'])){
@@ -1157,7 +1157,7 @@
 				 *	An array of Entry ID's passed by reference
 				 */
 				$checked = array($entry_id);
-				Symphony::ExtensionManager()->notifyMembers('EntryPreDelete', '/publish/', array('entry_id' => &$checked));
+				Symphony::ExtensionManager()->notifymembers('EntryPreDelete', '/publish/', array('entry_id' => &$checked));
 
 				EntryManager::delete($checked);
 
@@ -1172,7 +1172,7 @@
 				 * @param array $entry_id
 				 *  An array of Entry ID's that were deleted.
 				 */
-				Symphony::ExtensionManager()->notifyMembers('EntryPostDelete', '/publish/', array('entry_id' => $checked));
+				Symphony::ExtensionManager()->notifymembers('EntryPostDelete', '/publish/', array('entry_id' => $checked));
 
 				redirect(SYMPHONY_URL . '/publish/'.$this->_context['section_handle'].'/');
 			}
@@ -1251,7 +1251,7 @@
 			 *  The position of the Drawer, defaults to `vertical-right`. Available
 			 *  values of `vertical-left, `vertical-right` and `horizontal`
 			 */
-			Symphony::ExtensionManager()->notifyMembers('PrepareAssociationsDrawer', '/publish/', array(
+			Symphony::ExtensionManager()->notifymembers('PrepareAssociationsDrawer', '/publish/', array(
 				'entry_id' => $entry_id,
 				'parent_associations' => &$parent_associations,
 				'child_associations' => &$child_associations,

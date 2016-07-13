@@ -1,7 +1,7 @@
 <?php
 
 	/**
-	 * @package toolkit
+	 * @package, toolkit
 	 */
 	/**
 	 * Devkit extends the HTMLPage class to provide an object representation
@@ -145,7 +145,7 @@
 			 *	'/frontend/'
 			 * @param DOMDocument $xml
 			 */
-			Symphony::ExtensionManager()->notifyMembers(
+			Symphony::ExtensionManager()->notifymembers(
 				'ManipulateDevKitNavigation', '/frontend/',
 				array(
 					'xml'	=> $xml

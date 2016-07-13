@@ -97,7 +97,7 @@
 
 		/**
 		 * Will delete the Role given a `$role_id`. Should `$purge_members`
-		 * be passed, this function will remove all Members associated with
+		 * be passed, this function will remove all members associated with
 		 * this role as well
 		 *
 		 * @param integer $role_id
@@ -112,7 +112,7 @@
 			if($purge_members) {
 				$members = Symphony::Database()->fetchCol('entry_id', sprintf(
 					"SELECT `entry_id` FROM `tbl_entries_data_%d` WHERE `role_id` = %d",
-					extension_Members::getField('role')->get('id'), $role_id
+					extension_members::getField('role')->get('id'), $role_id
 				));
 
 				/**
@@ -125,7 +125,7 @@
 				 * @param array $checked
 				 *  An array of Entry ID's passed by reference
 				 */
-				Symphony::ExtensionManager()->notifyMembers('Delete', '/publish/', array('entry_id' => &$checked));
+				Symphony::ExtensionManager()->notifymembers('Delete', '/publish/', array('entry_id' => &$checked));
 
 				EntryManager::delete($members);
 			}

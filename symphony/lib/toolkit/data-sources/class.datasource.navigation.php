@@ -1,7 +1,7 @@
 <?php
 
 	/**
-	 * @package data-sources
+	 * @package, data-sources
 	 */
 	/**
 	 * The `NavigationDatasource` outputs the Symphony page structure as XML.

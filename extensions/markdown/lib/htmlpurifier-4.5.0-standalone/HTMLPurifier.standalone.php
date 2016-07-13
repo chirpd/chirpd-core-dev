@@ -6362,7 +6362,7 @@ class HTMLPurifier_Lexer
 
     }
 
-    // -- CONVENIENCE MEMBERS ---------------------------------------------
+    // -- CONVENIENCE memberS ---------------------------------------------
 
     public function __construct() {
         $this->_entity_parser = new HTMLPurifier_EntityParser();
@@ -7430,7 +7430,7 @@ class HTMLPurifier_URIDefinition extends HTMLPurifier_Definition
     }
 
     protected function doSetup($config) {
-        $this->setupMemberVariables($config);
+        $this->setupmemberVariables($config);
         $this->setupFilters($config);
     }
 
@@ -7448,7 +7448,7 @@ class HTMLPurifier_URIDefinition extends HTMLPurifier_Definition
         unset($this->registeredFilters);
     }
 
-    protected function setupMemberVariables($config) {
+    protected function setupmemberVariables($config) {
         $this->host = $config->get('URI.Host');
         $base_uri = $config->get('URI.Base');
         if (!is_null($base_uri)) {
@@ -11906,7 +11906,7 @@ class HTMLPurifier_ChildDef_Table extends HTMLPurifier_ChildDef
         $content = array();
 
         $nesting = 0; // current depth so we can determine nodes
-        $is_collecting = false; // are we globbing together tokens to package
+        $is_collecting = false; // are we globbing together tokens to package,
                                 // into one of the collectors?
         $collection = array(); // collected nodes
         $tag_index = 0; // the first node might be whitespace,

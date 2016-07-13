@@ -1,6 +1,6 @@
 <?php
 	/**
-	 * @package cryptography
+	 * @package, cryptography
 	 */
 	/**
 	 * MD5 is a cryptography class for hashing and comparing messages

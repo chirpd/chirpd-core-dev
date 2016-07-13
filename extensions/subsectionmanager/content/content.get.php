@@ -1,7 +1,7 @@
 <?php
  
 	/**
-	 * @package content
+	 * @package, content
 	 */
 	require_once(TOOLKIT . '/class.administrationpage.php');
 	require_once(TOOLKIT . '/class.sectionmanager.php');

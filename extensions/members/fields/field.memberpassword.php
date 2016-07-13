@@ -1,6 +1,6 @@
 <?php
 
-	Class fieldMemberPassword extends Field{
+	Class fieldmemberPassword extends Field{
 
 		protected static $_strengths = array();
 
@@ -16,14 +16,14 @@
 
 		public function __construct(){
 			parent::__construct();
-			$this->_name = __('Member: Password');
+			$this->_name = __('member: Password');
 			$this->_required = true;
 
 			$this->set('required', 'yes');
 			$this->set('length', '6');
 			$this->set('strength', 'good');
 
-			fieldMemberPassword::$_strengths = array(
+			fieldmemberPassword::$_strengths = array(
 				array('weak', false, __('Weak')),
 				array('good', false, __('Good')),
 				array('strong', false, __('Strong'))
@@ -91,7 +91,7 @@
 		 * @param integer $member_id
 		 * @return Entry|null
 		 */
-		public function fetchMemberIDBy($needle, $member_id) {
+		public function fetchmemberIDBy($needle, $member_id) {
 			if(is_array($needle)) {
 				extract($needle);
 			}
@@ -100,7 +100,7 @@
 			}
 
 			if(empty($password)) {
-				extension_Members::$_errors[$this->get('element_name')] = array(
+				extension_members::$_errors[$this->get('element_name')] = array(
 					'message' => __('\'%s\' is a required field.', array($this->get('label'))),
 					'type' => 'missing',
 					'label' => $this->get('label')
@@ -132,7 +132,7 @@
 
 				// If we didn't get an entry_id back, then it's because it was expired
 				if(is_null($valid_id)) {
-					extension_Members::$_errors[$this->get('element_name')] = array(
+					extension_members::$_errors[$this->get('element_name')] = array(
 						'message' => __('Recovery code has expired.'),
 						'type' => 'invalid',
 						'label' => $this->get('label')
@@ -148,7 +148,7 @@
 
 			if(!empty($data)) return $member_id;
 
-			extension_Members::$_errors[$this->get('element_name')] = array(
+			extension_members::$_errors[$this->get('element_name')] = array(
 				'message' => __('Invalid %s.', array($this->get('label'))),
 				'type' => 'invalid',
 				'label' => $this->get('label')
@@ -199,7 +199,7 @@
 				}
 			}
 
-			foreach(fieldMemberPassword::$_strength_map as $key => $values) {
+			foreach(fieldmemberPassword::$_strength_map as $key => $values) {
 				if(!in_array($strength, $values)) continue;
 
 				return $key;
@@ -207,7 +207,7 @@
 		}
 
 		protected static function compareStrength($a, $b) {
-			if (array_sum(fieldMemberPassword::$_strength_map[$a]) >= array_sum(fieldMemberPassword::$_strength_map[$b])) return true;
+			if (array_sum(fieldmemberPassword::$_strength_map[$a]) >= array_sum(fieldmemberPassword::$_strength_map[$b])) return true;
 
 			return false;
 		}
@@ -253,7 +253,7 @@
 		}
 
 		public static function findCodeExpiry() {
-			return extension_Members::findCodeExpiry('tbl_fields_memberpassword');
+			return extension_members::findCodeExpiry('tbl_fields_memberpassword');
 		}
 
 	/*-------------------------------------------------------------------------
@@ -279,7 +279,7 @@
 
 		// Strength -----------------------------------------------------------
 
-			$values = fieldMemberPassword::$_strengths;
+			$values = fieldmemberPassword::$_strengths;
 
 			foreach ($values as &$value) {
 				$value[1] = $value[0] == $this->get('strength');
@@ -333,7 +333,7 @@
 			));
 
 			$ul = new XMLElement('ul', NULL, array('class' => 'tags singular'));
-			$tags = fieldMemberPassword::findCodeExpiry();
+			$tags = fieldmemberPassword::findCodeExpiry();
 			foreach($tags as $name => $time) {
 				$ul->appendChild(new XMLElement('li', $name, array('class' => $time)));
 			}
@@ -380,7 +380,7 @@
 
 			if($id === false) return false;
 
-			fieldMemberPassword::createSettingsTable();
+			fieldmemberPassword::createSettingsTable();
 
 			$this->rememberSalt();
 
@@ -501,7 +501,7 @@
 					return self::__INVALID_FIELDS__;
 				}
 
-				if (!fieldMemberPassword::compareStrength(fieldMemberPassword::checkPassword($password), $this->get('strength'))) {
+				if (!fieldmemberPassword::compareStrength(fieldmemberPassword::checkPassword($password), $this->get('strength'))) {
 					$message = __('%s is not strong enough.', array($this->get('label')));
 					return self::__INVALID_FIELDS__;
 				}
@@ -529,7 +529,7 @@
 			if(!empty($password) || is_null($entry_id)) {
 				return array(
 					'password'	=> $this->encodePassword($password),
-					'strength'	=> fieldMemberPassword::checkPassword($password),
+					'strength'	=> fieldmemberPassword::checkPassword($password),
 					'length'	=> strlen($password)
 				);
 			}

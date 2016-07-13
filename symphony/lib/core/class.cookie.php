@@ -1,7 +1,7 @@
 <?php
 
 	/**
-	 * @package core
+	 * @package, core
 	 */
 	if(!defined('__IN_SYMPHONY__')) die('<h2>Symphony Error</h2><p>You cannot directly access this file</p>');
 
@@ -175,7 +175,7 @@
 
 			// Calling session_destroy triggers the Session::destroy function which removes the entire session
 			// from the database. To prevent logout issues between functionality that relies on $_SESSION, such
-			// as Symphony authentication or the Members extension, only delete the $_SESSION if it empty!
+			// as Symphony authentication or the members extension, only delete the $_SESSION if it empty!
 			if(empty($_SESSION)) session_destroy();
 		}
 

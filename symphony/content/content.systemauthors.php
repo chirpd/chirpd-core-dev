@@ -1,7 +1,7 @@
 <?php
 
 	/**
-	 * @package content
+	 * @package, content
 	 */
 
 	/**
@@ -174,7 +174,7 @@
 				 *  in the With Selected menu. Options should follow the same format
 				 *  expected by `Widget::__SelectBuildOption`. Passed by reference.
 				 */
-				Symphony::ExtensionManager()->notifyMembers('AddCustomActions', '/system/authors/', array(
+				Symphony::ExtensionManager()->notifymembers('AddCustomActions', '/system/authors/', array(
 					'options' => &$options
 				));
 
@@ -203,7 +203,7 @@
 				 *  An array of the selected rows. The value is usually the ID of the
 				 *  the associated object.
 				 */
-				Symphony::ExtensionManager()->notifyMembers('CustomActions', '/system/authors/', array(
+				Symphony::ExtensionManager()->notifymembers('CustomActions', '/system/authors/', array(
 					'checked' => $checked
 				));
 
@@ -218,7 +218,7 @@
 					* @param array $author_ids
 					*  An array of Author ID that are about to be removed
 					*/
-					Symphony::ExtensionManager()->notifyMembers('AuthorPreDelete', '/system/authors/', array('author_ids' => $checked));
+					Symphony::ExtensionManager()->notifymembers('AuthorPreDelete', '/system/authors/', array('author_ids' => $checked));
 
 					foreach($checked as $author_id) {
 						$a = AuthorManager::fetchByID($author_id);
@@ -461,7 +461,7 @@
 			* @param string $default_area
 			* The current `default_area` for this Author.
 			*/
-			Symphony::ExtensionManager()->notifyMembers('AddDefaultAuthorAreas', '/system/authors/', array(
+			Symphony::ExtensionManager()->notifymembers('AddDefaultAuthorAreas', '/system/authors/', array(
 				'options' => &$options,
 				'default_area' => $author->get('default_area')
 			));
@@ -525,7 +525,7 @@
 			* @param Author $author
 			* The current Author object that is being edited
 			*/
-			Symphony::ExtensionManager()->notifyMembers('AddElementstoAuthorForm', '/system/authors/', array(
+			Symphony::ExtensionManager()->notifymembers('AddElementstoAuthorForm', '/system/authors/', array(
 				'form' => &$this->Form,
 				'author' => $author
 			));
@@ -567,7 +567,7 @@
 						 * @param Author $author
 						 *  The Author object that has just been created
 						 */
-						Symphony::ExtensionManager()->notifyMembers('AuthorPostCreate', '/system/authors/', array('author' => $this->_Author));
+						Symphony::ExtensionManager()->notifymembers('AuthorPostCreate', '/system/authors/', array('author' => $this->_Author));
 
 						redirect(SYMPHONY_URL . "/system/authors/edit/$author_id/created/");
 					}
@@ -670,7 +670,7 @@
 						 * @param Author $author
 						 * An Author object
 						 */
-						Symphony::ExtensionManager()->notifyMembers('AuthorPostEdit', '/system/authors/', array('author' => $this->_Author));
+						Symphony::ExtensionManager()->notifymembers('AuthorPostEdit', '/system/authors/', array('author' => $this->_Author));
 
 						redirect(SYMPHONY_URL . '/system/authors/edit/' . $author_id . '/saved/');
 					}
@@ -700,7 +700,7 @@
 				 * @param integer $author_id
 				 *  The ID of Author ID that is about to be deleted
 				 */
-				Symphony::ExtensionManager()->notifyMembers('AuthorPreDelete', '/system/authors/', array('author_id' => $author_id));
+				Symphony::ExtensionManager()->notifymembers('AuthorPreDelete', '/system/authors/', array('author_id' => $author_id));
 
 				if(!$isOwner) {
 					AuthorManager::delete($author_id);

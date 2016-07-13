@@ -33,7 +33,7 @@
 		'Create' =>
 		'Erstellen',
 
-		'Packages entire site as a <code>.zip</code> archive for download.' =>
+		'package,s entire site as a <code>.zip</code> archive for download.' =>
 		'Stellt die gesamte Seite als <code>Zip</code>-Archiv zur Verfügung.',
 
 		'Export Ensemble cannot be installed, since the "<a href="http://php.net/manual/en/book.zip.php">ZipArchive</a>" class is not available. Ensure that PHP was compiled with the <code>--enable-zip</code> flag.' =>

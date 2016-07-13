@@ -7,7 +7,7 @@
 	include_once(EXTENSIONS . '/members/lib/class.members.php');
 	include_once(EXTENSIONS . '/members/lib/member.symphony.php');
 
-	Class extension_Members extends Extension {
+	Class extension_members extends Extension {
 
 		/**
 		 * @var integer $members_section
@@ -37,14 +37,14 @@
 		);
 
 		/**
-		 * Holds the current Member class that is in place, for this release
-		 * this will always the SymphonyMember, which extends Member and implements
-		 * the Member interface.
+		 * Holds the current member class that is in place, for this release
+		 * this will always the Symphonymember, which extends member and implements
+		 * the member interface.
 		 *
-		 * @see getMemberDriver()
-		 * @var Member $Member
+		 * @see getmemberDriver()
+		 * @var member $member
 		 */
-		protected $Member = null;
+		protected $member = null;
 
 		/**
 		 * Accessible via `getField()`
@@ -64,7 +64,7 @@
 
 		/**
 		 * Returns an associative array of errors that have occurred while
-		 * logging in or preforming a Members custom event. The key is the
+		 * logging in or preforming a members custom event. The key is the
 		 * field's `element_name` and the value is the error message.
 		 *
 		 * @var array $_errors
@@ -72,34 +72,34 @@
 		public static $_errors = array();
 
 		/**
-		 * By default this is set to `false`. If a Member attempts to login
+		 * By default this is set to `false`. If a member attempts to login
 		 * but is unsuccessful, this will be `true`. Useful in the
 		 * `appendLoginStatusToEventXML` function to determine whether to display
-		 * `extension_Members::$_errors` or not.
+		 * `extension_members::$_errors` or not.
 		 *
 		 * @var boolean $failed_login_attempt
 		 */
 		public static $_failed_login_attempt = false;
 
 		/**
-		 * Only create a Member object on the Frontend of the site.
+		 * Only create a member object on the Frontend of the site.
 		 * There is no need to create this in the Administration context
 		 * as authenticated users are Authors and are handled by Symphony,
 		 * not this extension.
 		 */
 		public function __construct() {
-			if(!extension_Members::$initialised) {
+			if(!extension_members::$initialised) {
 				if(class_exists('Symphony') && Symphony::Engine() instanceof Frontend) {
-					Symphony::ExtensionManager()->notifyMembers('InitialiseMember', '/frontend/', array(
-						'member' => &$this->Member
+					Symphony::ExtensionManager()->notifymembers('Initialisemember', '/frontend/', array(
+						'member' => &$this->member
 					));
 
-					if(is_null($this->Member)) {
-						$this->Member = new SymphonyMember;
+					if(is_null($this->member)) {
+						$this->member = new Symphonymember;
 					}
 				}
 
-				extension_Members::$initialised = true;
+				extension_members::$initialised = true;
 			}
 		}
 
@@ -107,7 +107,7 @@
 			return array(
 				array(
 					'location' 	=> __('System'),
-					'name' 		=> __('Member Roles'),
+					'name' 		=> __('member Roles'),
 					'link' 		=> '/roles/'
 				)
 			);
@@ -126,7 +126,7 @@
 				array(
 					'page' => '/frontend/',
 					'delegate' => 'FrontendParamsResolve',
-					'callback' => 'addMemberDetailsToPageParams'
+					'callback' => 'addmemberDetailsToPageParams'
 				),
 				array(
 					'page' => '/frontend/',
@@ -225,7 +225,7 @@
 
 		/**
 		 * Remove's all `members` Configuration values and then drops all the
-		 * database tables created by the Members extension
+		 * database tables created by the members extension
 		 *
 		 * @return boolean
 		 */
@@ -267,7 +267,7 @@
 
 			if(version_compare($previousVersion, '1.0RC1', '<')) {
 				// Move the auto_login setting from the Activation Field to the config
-				$field = extension_Members::getField('activation');
+				$field = extension_members::getField('activation');
 				if($field instanceof Field) {
 					Symphony::Configuration()->set('activate-account-auto-login', $field->get('auto_login'));
 
@@ -292,11 +292,11 @@
 			if(version_compare($previousVersion, '1.1 Beta 1', '<') || version_compare($previousVersion, '1.1.1RC1', '<')) {
 				$tables = array();
 
-				// For any Member: Username or Member: Email fields, add a handle column
+				// For any member: Username or member: Email fields, add a handle column
 				// and adjust the indexes to reflect that. Uniqueness is on the handle,
 				// not the value.
-				$field = extension_Members::getField('identity');
-				if($field instanceof fieldMemberUsername) {
+				$field = extension_members::getField('identity');
+				if($field instanceof fieldmemberUsername) {
 					$identity_tables = Symphony::Database()->fetchCol("field_id", "SELECT `field_id` FROM `tbl_fields_memberusername`");
 
 					if(is_array($identity_tables) && !empty($identity_tables)) {
@@ -356,13 +356,13 @@
 
 			// So `handle` for Email fields is useless as me@example.com will become
 			// the same as meex@ample.com. Reverting previous change by dropping
-			// `handle` column from Member: Email tables and restoring the UNIQUE KEY
+			// `handle` column from member: Email tables and restoring the UNIQUE KEY
 			// index to the `value` column.
 			if(version_compare($previousVersion, '1.1 Beta 2', '<')) {
 				$tables = array();
 
-				$field = extension_Members::getField('email');
-				if($field instanceof fieldMemberEmail) {
+				$field = extension_members::getField('email');
+				if($field instanceof fieldmemberEmail) {
 					$email_tables = Symphony::Database()->fetchCol("field_id", "SELECT `field_id` FROM `tbl_fields_memberemail`");
 
 					if(is_array($email_tables) && !empty($email_tables)) {
@@ -407,21 +407,21 @@
 		}
 
 		/**
-		 * Returns an instance of the currently logged in Member, which is a `Entry` object.
-		 * If there is no logged in Member, this function will return `null`
+		 * Returns an instance of the currently logged in member, which is a `Entry` object.
+		 * If there is no logged in member, this function will return `null`
 		 *
-		 * @return Member
+		 * @return member
 		 */
-		public function getMemberDriver() {
-			return $this->Member;
+		public function getmemberDriver() {
+			return $this->member;
 		}
 
 		/**
-		 * Given a `$handle`, this function will return a value from the Members
+		 * Given a `$handle`, this function will return a value from the members
 		 * configuration. Typically this is an shortcut accessor to
 		 * `Symphony::Configuration()->get($handle, 'members')`. If no `$handle`
 		 * is given this function will return all the configuration values for
-		 * the Members extension as an array.
+		 * the members extension as an array.
 		 *
 		 * @param string $handle
 		 * @return mixed
@@ -434,23 +434,23 @@
 		}
 
 		/**
-		 * Shortcut accessor for the active Members Section. This function
+		 * Shortcut accessor for the active members Section. This function
 		 * caches the result of the `getSetting('section')`.
 		 *
 		 * @return integer
 		 */
-		public static function getMembersSection() {
-			if(is_null(extension_Members::$members_section)) {
-				extension_Members::$members_section = extension_Members::getSetting('section');
+		public static function getmembersSection() {
+			if(is_null(extension_members::$members_section)) {
+				extension_members::$members_section = extension_members::getSetting('section');
 			}
 
-			return extension_Members::$members_section;
+			return extension_members::$members_section;
 		}
 
 		/**
 		 * Given a string representing a field type, return the actual field type
 		 * that will be saved in Symphony. This is mainly for legacy reasons, where
-		 * the Members extension uses slightly different types to what is actually
+		 * the members extension uses slightly different types to what is actually
 		 * saved. For example, `role` is `memberrole`, `authentication` is `memberpassword`
 		 * etc.
 		 *
@@ -473,7 +473,7 @@
 		 * Where `$name` is one of the following values, `role`, `timezone`,
 		 * `email`, `activation`, `authentication` and `identity`, this function
 		 * will return a Field instance. Typically this allows extensions to access
-		 * the Fields that are currently being used in the active Members section.
+		 * the Fields that are currently being used in the active members section.
 		 *
 		 * @param string $type
 		 * @param integer $section_id
@@ -489,15 +489,15 @@
 
 			// Check to see if this name has been stored in our 'static' cache
 			// If it hasn't, lets go find it (for better or worse)
-			if(!isset(extension_Members::$fields[$type])) {
+			if(!isset(extension_members::$fields[$type])) {
 				self::initialiseField($type, $section_id);
 			}
 
 			// No field, return null
-			if(!isset(extension_Members::$fields[$type])) return null;
+			if(!isset(extension_members::$fields[$type])) return null;
 
 			// If it has, return it.
-			return extension_Members::$fields[$type];
+			return extension_members::$fields[$type];
 		}
 
 		/**
@@ -505,7 +505,7 @@
 		 * `email`, `activation`, `authentication` and `identity`, this function
 		 * will return the Field's `element_name`. `element_name` is a handle
 		 * of the Field's label, used most commonly by events in `$_POST` data.
-		 * If no `$name` is given, an array of all Member field handles will
+		 * If no `$name` is given, an array of all member field handles will
 		 * be returned.
 		 *
 		 * @param string $type
@@ -519,15 +519,15 @@
 
 			// Check to see if this name has been stored in our 'static' cache
 			// If it hasn't, lets go find it (for better or worse)
-			if(!isset(extension_Members::$handles[$type])) {
+			if(!isset(extension_members::$handles[$type])) {
 				self::initialiseField($type, $section_id);
 			}
 
 			// No field, return null
-			if(!isset(extension_Members::$handles[$type])) return null;
+			if(!isset(extension_members::$handles[$type])) return null;
 
 			// Return the handle
-			return extension_Members::$handles[$type];
+			return extension_members::$handles[$type];
 		}
 
 		/**
@@ -542,24 +542,24 @@
 
 			if(!empty($field)) {
 				$field = current($field);
-				extension_Members::$fields[$type] = $field;
-				extension_Members::$handles[$type] = $field->get('element_name');
+				extension_members::$fields[$type] = $field;
+				extension_members::$handles[$type] = $field->get('element_name');
 			}
 		}
 
 		/**
 		 * This function will adjust the locale for the currently logged in
-		 * user if the active Member section has a Member: Timezone field.
+		 * user if the active member section has a member: Timezone field.
 		 *
 		 * @param integer $member_id
 		 * @return void
 		 */
 		public function updateSystemTimezoneOffset($member_id) {
-			$timezone = extension_Members::getField('timezone');
+			$timezone = extension_members::getField('timezone');
 
-			if(!$timezone instanceof fieldMemberTimezone) return;
+			if(!$timezone instanceof fieldmemberTimezone) return;
 
-			$tz = $timezone->getMemberTimezone($member_id);
+			$tz = $timezone->getmemberTimezone($member_id);
 
 			if(is_null($tz)) return;
 
@@ -567,7 +567,7 @@
 				DateTimeObj::setDefaultTimezone($tz);
 			}
 			catch(Exception $ex) {
-				Symphony::Log()->pushToLog(__('Members Timezone') . ': ' . $ex->getMessage(), $ex->getCode(), true);
+				Symphony::Log()->pushToLog(__('members Timezone') . ': ' . $ex->getMessage(), $ex->getCode(), true);
 			}
 		}
 
@@ -581,7 +581,7 @@
 		 * @return array
 		 */
 		public static function setActiveTemplate(array $options, $handle) {
-			$templates = explode(',', extension_Members::getSetting($handle));
+			$templates = explode(',', extension_members::getSetting($handle));
 
 			foreach($options as $index => $ext) {
 				foreach($ext['options'] as $key => $opt) {
@@ -597,7 +597,7 @@
 		}
 
 		/**
-		 * The Members extension provides a number of filters for users to add their
+		 * The members extension provides a number of filters for users to add their
 		 * events to do various functionality. This negates the need for custom events
 		 *
 		 * @uses AppendEventFilter
@@ -607,28 +607,28 @@
 		public function appendFilter($context) {
 			$selected = !is_array($context['selected']) ? array() : $context['selected'];
 
-			// Add Member: Lock Role filter
+			// Add member: Lock Role filter
 			$context['options'][] = array(
 				'member-lock-role',
 				in_array('member-lock-role', $selected),
-				__('Members: Lock Role')
+				__('members: Lock Role')
 			);
 
-			if(!is_null(extension_Members::getFieldHandle('activation')) && !is_null(extension_Members::getFieldHandle('email'))) {
-				// Add Member: Lock Activation filter
+			if(!is_null(extension_members::getFieldHandle('activation')) && !is_null(extension_members::getFieldHandle('email'))) {
+				// Add member: Lock Activation filter
 				$context['options'][] = array(
 					'member-lock-activation',
 					in_array('member-lock-activation', $selected),
-					__('Members: Lock Activation')
+					__('members: Lock Activation')
 				);
 			}
 
-			if(!is_null(extension_Members::getFieldHandle('authentication'))) {
-				// Add Member: Update Password filter
+			if(!is_null(extension_members::getFieldHandle('authentication'))) {
+				// Add member: Update Password filter
 				$context['options'][] = array(
 					'member-update-password',
 					in_array('member-update-password', $selected),
-					__('Members: Update Password')
+					__('members: Update Password')
 				);
 			}
 		}
@@ -724,12 +724,12 @@
 		public function appendPreferences($context) {
 			$fieldset = new XMLElement('fieldset');
 			$fieldset->setAttribute('class', 'settings');
-			$fieldset->appendChild(new XMLElement('legend', __('Members')));
+			$fieldset->appendChild(new XMLElement('legend', __('members')));
 
 			$div = new XMLElement('div');
-			$label = new XMLElement('label', __('Active Members Section'));
+			$label = new XMLElement('label', __('Active members Section'));
 
-			// Get the Sections that contain a Member field.
+			// Get the Sections that contain a member field.
 			$sections = SectionManager::fetch();
 			$member_sections = array();
 			if(is_array($sections) && !empty($sections)) {
@@ -737,7 +737,7 @@
 					$schema = $section->fetchFieldsSchema();
 
 					foreach($schema as $field) {
-						if(!in_array($field['type'], extension_Members::$member_fields)) continue;
+						if(!in_array($field['type'], extension_members::$member_fields)) continue;
 
 						if(array_key_exists($section->get('id'), $member_sections)) continue;
 
@@ -751,7 +751,7 @@
 				array(null, false, null)
 			);
 			foreach($member_sections as $section_id => $section) {
-				$options[] = array($section_id, ($section_id == extension_Members::getMembersSection()), $section['name']);
+				$options[] = array($section_id, ($section_id == extension_members::getmembersSection()), $section['name']);
 			}
 
 			$label->appendChild(Widget::Select('settings[members][section]', $options));
@@ -759,7 +759,7 @@
 
 			if(count($options) == 1) {
 				$div->appendChild(
-					new XMLElement('p', __('A Members section will at minimum contain either a Member: Email or a Member: Username field'), array('class' => 'help'))
+					new XMLElement('p', __('A members section will at minimum contain either a member: Email or a member: Username field'), array('class' => 'help'))
 				);
 			}
 
@@ -769,7 +769,7 @@
 		}
 
 		/**
-		 * Saves the Member Section to the configuration
+		 * Saves the member Section to the configuration
 		 *
 		 * @uses savePreferences
 		 *
@@ -793,7 +793,7 @@
 			$isLoggedIn = false;
 			$errors = array();
 
-			// Checks $_REQUEST to see if a Member Action has been requested,
+			// Checks $_REQUEST to see if a member Action has been requested,
 			// member-action['login'] and member-action['logout']/?member-action=logout
 			// are the only two supported at this stage.
 			if(is_array($_REQUEST['member-action'])){
@@ -802,26 +802,26 @@
 				$action = $_REQUEST['member-action'];
 			}
 
-			// Check to see a Member is already logged in.
-			$isLoggedIn = $this->getMemberDriver()->isLoggedIn($errors);
+			// Check to see a member is already logged in.
+			$isLoggedIn = $this->getmemberDriver()->isLoggedIn($errors);
 
 			// Logout
 			if(trim($action) == 'logout') {
 				/**
 				 * Fired just before a member is logged out (and page redirection),
-				 * this delegate provides the current Member ID
+				 * this delegate provides the current member ID
 				 *
-				 * @delegate MembersPreLogout
+				 * @delegate membersPreLogout
 				 * @param string $context
 				 *  '/frontend/'
 				 * @param integer $member_id
-				 *  The Member ID of the member who is about to logged out
+				 *  The member ID of the member who is about to logged out
 				 */
-				Symphony::ExtensionManager()->notifyMembers('MembersPreLogout', '/frontend/', array(
-					'member_id' => $this->getMemberDriver()->getMemberID()
+				Symphony::ExtensionManager()->notifymembers('membersPreLogout', '/frontend/', array(
+					'member_id' => $this->getmemberDriver()->getmemberID()
 				));
 
-				$this->getMemberDriver()->logout();
+				$this->getmemberDriver()->logout();
 
 				// If a redirect is provided, redirect to that, otherwise return the user
 				// to the index of the site. Issue #51 & #121
@@ -832,28 +832,28 @@
 
 			// Login
 			else if(trim($action) == 'login' && !is_null($_POST['fields'])) {
-				// If a Member is already logged in and another Login attempt is requested
-				// log the Member out first before trying to login with new details.
+				// If a member is already logged in and another Login attempt is requested
+				// log the member out first before trying to login with new details.
 				if($isLoggedIn) {
-					$this->getMemberDriver()->logout();
+					$this->getmemberDriver()->logout();
 				}
-				if($this->getMemberDriver()->login($_POST['fields'])) {
+				if($this->getmemberDriver()->login($_POST['fields'])) {
 					/**
-					 * Fired just after a Member has successfully logged in, this delegate
-					 * provides the current Member ID. This delegate is fired just before
+					 * Fired just after a member has successfully logged in, this delegate
+					 * provides the current member ID. This delegate is fired just before
 					 * the page redirection (if it is provided)
 					 *
-					 * @delegate MembersPostLogin
+					 * @delegate membersPostLogin
 					 * @param string $context
 					 *  '/frontend/'
 					 * @param integer $member_id
-					 *  The Member ID of the member who just logged in.
+					 *  The member ID of the member who just logged in.
 					 * @param Entry $member
-					 *  The Entry object of the logged in Member.
+					 *  The Entry object of the logged in member.
 					 */
-					Symphony::ExtensionManager()->notifyMembers('MembersPostLogin', '/frontend/', array(
-						'member_id' => $this->getMemberDriver()->getMemberID(),
-						'member' => $this->getMemberDriver()->getMember()
+					Symphony::ExtensionManager()->notifymembers('membersPostLogin', '/frontend/', array(
+						'member_id' => $this->getmemberDriver()->getmemberID(),
+						'member' => $this->getmemberDriver()->getmember()
 					));
 
 					if(isset($_POST['redirect'])) redirect($_POST['redirect']);
@@ -863,20 +863,20 @@
 				}
 			}
 
-			$this->Member->initialiseMemberObject();
+			$this->member->initialisememberObject();
 
-			if($isLoggedIn && $this->getMemberDriver()->getMember() instanceOf Entry) {
-				$this->updateSystemTimezoneOffset($this->getMemberDriver()->getMemberID());
+			if($isLoggedIn && $this->getmemberDriver()->getmember() instanceOf Entry) {
+				$this->updateSystemTimezoneOffset($this->getmemberDriver()->getmemberID());
 
-				if(!is_null(extension_Members::getFieldHandle('role'))) {
-					$role_data = $this->getMemberDriver()->getMember()->getData(extension_Members::getField('role')->get('id'));
+				if(!is_null(extension_members::getFieldHandle('role'))) {
+					$role_data = $this->getmemberDriver()->getmember()->getData(extension_members::getField('role')->get('id'));
 				}
 			}
 
 			// If there is no role field, or a Developer is logged in, return, as Developers
 			// should be able to access every page.
 			if(
-				is_null(extension_Members::getFieldHandle('role'))
+				is_null(extension_members::getFieldHandle('role'))
 				|| (Frontend::instance()->Author instanceof Author && Frontend::instance()->Author->isDeveloper())
 			) return;
 
@@ -910,7 +910,7 @@
 	-------------------------------------------------------------------------*/
 
 		/**
-		 * Adds Javascript to the custom Members events when they are viewed in the
+		 * Adds Javascript to the custom members events when they are viewed in the
 		 * backend to enable developers to set the appropriate Email Templates for
 		 * each event
 		 *
@@ -929,7 +929,7 @@
 				if(
 					$context['oPage'] instanceof contentBlueprintsEvents &&
 					$callback['context'][0] == "info" &&
-					in_array($callback['context'][1], extension_Members::$member_events)
+					in_array($callback['context'][1], extension_members::$member_events)
 				) {
 					Administration::instance()->Page->addScriptToHead(URL . '/extensions/members/assets/members.events.js', 10001, false);
 				}
@@ -967,7 +967,7 @@
 			// If this system has no Roles, or the event is set to ignore role permissions
 			// continue straight to processing the Filters
 			if(
-				is_null(extension_Members::getFieldHandle('role')) ||
+				is_null(extension_members::getFieldHandle('role')) ||
 				(method_exists($context['event'], 'ignoreRolePermissions') && $context['event']->ignoreRolePermissions() == true)
 			) {
 				$this->__processEventFilters($context);
@@ -979,7 +979,7 @@
 			// `allow_multiple` filter set as we can't determine the correct `$entry_id`
 			// This will check to see if the `$entry_id` is set, otherwise fallback
 			// to the previous logic. This will mean that using `allow_multiple` will
-			// not be compatible without Symphony 2.2.2 and Members 1.1
+			// not be compatible without Symphony 2.2.2 and members 1.1
 			// @see https://github.com/symphonycms/members/issues/167
 			if(isset($context['entry_id']) && is_numeric($context['entry_id'])) {
 				$entry_id = (int)$context['entry_id'];
@@ -997,39 +997,39 @@
 			$required_level = $action == 'create' ? EventPermissions::CREATE : EventPermissions::ALL_ENTRIES;
 			$role_id = Role::PUBLIC_ROLE;
 
-			$isLoggedIn = $this->getMemberDriver()->isLoggedIn();
+			$isLoggedIn = $this->getmemberDriver()->isLoggedIn();
 
-			if($isLoggedIn && $this->getMemberDriver()->initialiseMemberObject()) {
-				if($this->getMemberDriver()->getMember() instanceOf Entry) {
+			if($isLoggedIn && $this->getmemberDriver()->initialisememberObject()) {
+				if($this->getmemberDriver()->getmember() instanceOf Entry) {
 					$required_level = EventPermissions::OWN_ENTRIES;
-					$role_data = $this->getMemberDriver()->getMember()->getData(extension_Members::getField('role')->get('id'));
+					$role_data = $this->getmemberDriver()->getmember()->getData(extension_members::getField('role')->get('id'));
 					$role_id = $role_data['role_id'];
 
 					if($action == 'edit' && method_exists($context['event'], 'getSource')) {
 						$section_id = $context['event']->getSource();
 						$isOwner = false;
 
-						// If the event is the same section as the Members section, then for `$isOwner`
+						// If the event is the same section as the members section, then for `$isOwner`
 						// to be true, the `$entry_id` must match the currently logged in user.
-						if($section_id == extension_Members::getMembersSection()) {
+						if($section_id == extension_members::getmembersSection()) {
 							// Check the logged in member is the same as the `entry_id` that is about to
 							// be updated. If so the user is the Owner and can modify EventPermissions::OWN_ENTRIES
-							$isOwner = ($this->getMemberDriver()->getMemberID() == $entry_id);
+							$isOwner = ($this->getmemberDriver()->getmemberID() == $entry_id);
 						}
 
 						// If the $section_id !== members_section, check the section associations table
-						// for any links to either of the Member fields that my be used for linking,
+						// for any links to either of the member fields that my be used for linking,
 						// that is the Username or Email field.
 						else {
 							$field_ids = array();
 
 							// Get the ID's of the fields that may be used for Linking (Username/Email)
-							if(!is_null(extension_Members::getFieldHandle('identity'))) {
-								$field_ids[] = extension_Members::getField('identity')->get('id');
+							if(!is_null(extension_members::getFieldHandle('identity'))) {
+								$field_ids[] = extension_members::getField('identity')->get('id');
 							}
 
-							if(!is_null(extension_Members::getFieldHandle('email'))) {
-								$field_ids[] = extension_Members::getField('email')->get('id');
+							if(!is_null(extension_members::getFieldHandle('email'))) {
+								$field_ids[] = extension_members::getField('email')->get('id');
 							}
 
 							// Query for the `field_id` of any linking fields that link to the members
@@ -1041,25 +1041,25 @@
 									AND `child_section_id` = %d
 									AND `parent_section_field_id` IN ('%s')
 								",
-								extension_Members::getMembersSection(),
+								extension_members::getmembersSection(),
 								$section_id,
 								implode("','", $field_ids)
 							));
 
 							// If there was a link found, get the `relation_id`, which is the `member_id` of
-							// an entry in the active Members section.
+							// an entry in the active members section.
 							if(!empty($fields)) {
 								foreach($fields as $field_id) {
 									if($isOwner === true) break;
 									$field = FieldManager::fetch($field_id);
 									if($field instanceof Field) {
-										// So we are trying to find all entries that have selected the Member entry
+										// So we are trying to find all entries that have selected the member entry
 										// to determine ownership. This check will use the `fetchAssociatedEntryIDs`
 										// function, which typically works backwards, by accepting the `entry_id` (in
-										// this case, our logged in Member ID). This will return an array of all the
+										// this case, our logged in member ID). This will return an array of all the
 										// linked entries, so we then just check that the current entry that is going to
 										// be updated is in that array
-										$member_id = $field->fetchAssociatedEntryIDs($this->getMemberDriver()->getMemberID());
+										$member_id = $field->fetchAssociatedEntryIDs($this->getmemberDriver()->getmemberID());
 										$isOwner = in_array($entry_id, $member_id);
 									}
 								}
@@ -1093,19 +1093,19 @@
 		 * @param array $context
 		 */
 		private function __processEventFilters(array &$context) {
-			// Process the Member Lock Role
+			// Process the member Lock Role
 			if (in_array('member-lock-role', $context['event']->eParamFILTERS)) {
-				$this->getMemberDriver()->filter_LockRole($context);
+				$this->getmemberDriver()->filter_LockRole($context);
 			}
 
-			// Process the Member Lock Activation
+			// Process the member Lock Activation
 			if (in_array('member-lock-activation', $context['event']->eParamFILTERS)) {
-				$this->getMemberDriver()->filter_LockActivation($context);
+				$this->getmemberDriver()->filter_LockActivation($context);
 			}
 
-			// Process updating a Member's Password
+			// Process updating a member's Password
 			if (in_array('member-update-password', $context['event']->eParamFILTERS)) {
-				$this->getMemberDriver()->filter_UpdatePassword($context);
+				$this->getmemberDriver()->filter_UpdatePassword($context);
 			}
 		}
 
@@ -1117,9 +1117,9 @@
 		 * @param array $context
 		 */
 		public function processPostSaveFilter(array &$context) {
-			// Process updating a Member's Password
+			// Process updating a member's Password
 			if (in_array('member-update-password', $context['event']->eParamFILTERS)) {
-				$this->getMemberDriver()->filter_UpdatePasswordLogin($context);
+				$this->getmemberDriver()->filter_UpdatePasswordLogin($context);
 			}
 		}
 
@@ -1127,12 +1127,12 @@
 		Output:
 	-------------------------------------------------------------------------*/
 
-		public function addMemberDetailsToPageParams(array $context = null) {
-			$this->getMemberDriver()->addMemberDetailsToPageParams($context);
+		public function addmemberDetailsToPageParams(array $context = null) {
+			$this->getmemberDriver()->addmemberDetailsToPageParams($context);
 		}
 
 		public function appendLoginStatusToEventXML(array $context = null){
-			$this->getMemberDriver()->appendLoginStatusToEventXML($context);
+			$this->getmemberDriver()->appendLoginStatusToEventXML($context);
 		}
 
 	}

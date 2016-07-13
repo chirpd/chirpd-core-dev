@@ -1,7 +1,7 @@
 <?php
 
 	/**
-	 * @package core
+	 * @package, core
 	 */
 	/**
 	 * The Log class acts a simple wrapper to write errors to a file so that it can

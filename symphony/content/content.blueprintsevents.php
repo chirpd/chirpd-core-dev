@@ -1,6 +1,6 @@
 <?php
 	/**
-	 * @package content
+	 * @package, content
 	 */
 
 	/**
@@ -225,7 +225,7 @@
 				 * @param array $options
 				 *  An array of all the filters that are available, passed by reference
 				 */
-				Symphony::ExtensionManager()->notifyMembers('AppendEventFilter', '/blueprints/events/' . $this->_context[0] . '/', array(
+				Symphony::ExtensionManager()->notifymembers('AppendEventFilter', '/blueprints/events/' . $this->_context[0] . '/', array(
 					'selected' => $filters,
 					'options' => &$options
 				));
@@ -342,7 +342,7 @@
 				 * @param string $file
 				 *  The path to the Event file
 				 */
-				Symphony::ExtensionManager()->notifyMembers('EventPreDelete', '/blueprints/events/', array('file' => EVENTS . "/event." . $this->_context[1] . ".php"));
+				Symphony::ExtensionManager()->notifymembers('EventPreDelete', '/blueprints/events/', array('file' => EVENTS . "/event." . $this->_context[1] . ".php"));
 
 				if(!General::deleteFile(EVENTS . '/event.' . $this->_context[1] . '.php')) {
 					$this->pageAlert(
@@ -592,7 +592,7 @@
 					 * @param array $documentation
 					 *  An array of all the documentation XMLElements, passed by reference
 					 */
-					Symphony::ExtensionManager()->notifyMembers('AppendEventFilterDocumentation', '/blueprints/events/' . $this->_context[0] . '/', array(
+					Symphony::ExtensionManager()->notifymembers('AppendEventFilterDocumentation', '/blueprints/events/' . $this->_context[0] . '/', array(
 						'selected' => $filters,
 						'documentation' => &$documentation_parts
 					));
@@ -627,7 +627,7 @@
 					 * @param array $filters
 					 *  An array of the filters attached to this event
 					 */
-					Symphony::ExtensionManager()->notifyMembers('EventPreCreate', '/blueprints/events/', array(
+					Symphony::ExtensionManager()->notifymembers('EventPreCreate', '/blueprints/events/', array(
 						'file' => $file,
 						'contents' => &$eventShell,
 						'filters' => $filters
@@ -649,7 +649,7 @@
 					 * @param array $filters
 					 *  An array of the filters attached to this event
 					 */
-					Symphony::ExtensionManager()->notifyMembers('EventPreEdit', '/blueprints/events/', array(
+					Symphony::ExtensionManager()->notifymembers('EventPreEdit', '/blueprints/events/', array(
 						'file' => $file,
 						'contents' => &$eventShell,
 						'filters' => $filters
@@ -695,7 +695,7 @@
 						 * @param string $file
 						 *  The path to the Event file
 						 */
-						Symphony::ExtensionManager()->notifyMembers('EventPostCreate', '/blueprints/events/', array(
+						Symphony::ExtensionManager()->notifymembers('EventPostCreate', '/blueprints/events/', array(
 							'file' => $file
 						));
 					}
@@ -714,7 +714,7 @@
 						 *  have been renamed. To get the handle from this value, see
 						 *  `EventManager::__getHandleFromFilename`
 						 */
-						Symphony::ExtensionManager()->notifyMembers('EventPostEdit', '/blueprints/events/', array(
+						Symphony::ExtensionManager()->notifymembers('EventPostEdit', '/blueprints/events/', array(
 							'file' => $file,
 							'previous_file' => ($queueForDeletion) ? $queueForDeletion : null
 						));

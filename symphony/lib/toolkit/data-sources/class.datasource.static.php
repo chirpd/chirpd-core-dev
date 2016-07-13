@@ -1,7 +1,7 @@
 <?php
 
 	/**
-	 * @package data-sources
+	 * @package, data-sources
 	 */
 	/**
 	 * The `StaticXMLDatasource` allows a block of XML to be exposed to the

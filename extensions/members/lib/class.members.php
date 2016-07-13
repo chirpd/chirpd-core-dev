@@ -1,12 +1,12 @@
 <?php
 
 	function __autoload($name) {
-		if(preg_match('/Member$/', $name)) {
-			require_once EXTENSIONS . '/members/lib/member.' . strtolower(preg_replace('/Member$/', '', $name)) . '.php';
+		if(preg_match('/member$/', $name)) {
+			require_once EXTENSIONS . '/members/lib/member.' . strtolower(preg_replace('/member$/', '', $name)) . '.php';
 		}
 	}
 
-	Interface Member {
+	Interface member {
 		// Authentication
 		public function login(array $credentials);
 		public function logout();
@@ -14,32 +14,32 @@
 
 		// Finding
 		public static function setIdentityField(array $credentials, $simplified = true);
-		public function findMemberIDFromCredentials(array $credentials);
-		public function fetchMemberFromID($member_id = null);
+		public function findmemberIDFromCredentials(array $credentials);
+		public function fetchmemberFromID($member_id = null);
 
 		// Output
-		public function addMemberDetailsToPageParams(array $context = null);
+		public function addmemberDetailsToPageParams(array $context = null);
 		public function appendLoginStatusToEventXML(array $context = null);
 	}
 
-	Abstract Class Members implements Member {
+	Abstract Class members implements member {
 
 		protected static $member_id = 0;
 		protected static $isLoggedIn = false;
 
-		public $Member = null;
+		public $member = null;
 		public $cookie = null;
 
 	/*-------------------------------------------------------------------------
 		Utilities:
 	-------------------------------------------------------------------------*/
 
-		public function getMemberID() {
+		public function getmemberID() {
 			return self::$member_id;
 		}
 
-		public function getMember() {
-			return $this->Member;
+		public function getmember() {
+			return $this->member;
 		}
 
 	/*-------------------------------------------------------------------------
@@ -54,27 +54,27 @@
 			}
 		}
 
-		public function initialiseMemberObject($member_id = null) {
-			if(is_null($this->Member)) {
-				$this->Member = $this->fetchMemberFromID($member_id);
+		public function initialisememberObject($member_id = null) {
+			if(is_null($this->member)) {
+				$this->member = $this->fetchmemberFromID($member_id);
 			}
 
-			return $this->Member;
+			return $this->member;
 		}
 
 	/*-------------------------------------------------------------------------
 		Finding:
 	-------------------------------------------------------------------------*/
 
-		public function fetchMemberFromID($member_id = null) {
+		public function fetchmemberFromID($member_id = null) {
 			if(!is_null($member_id)) {
-				$Member = EntryManager::fetch($member_id, NULL, NULL, NULL, NULL, NULL, false, true);
-				return $Member[0];
+				$member = EntryManager::fetch($member_id, NULL, NULL, NULL, NULL, NULL, false, true);
+				return $member[0];
 			}
 
 			else if(self::$member_id !== 0) {
-				$Member = EntryManager::fetch(self::$member_id, NULL, NULL, NULL, NULL, NULL, false, true);
-				return $Member[0];
+				$member = EntryManager::fetch(self::$member_id, NULL, NULL, NULL, NULL, NULL, false, true);
+				return $member[0];
 			}
 
 			return null;
@@ -82,18 +82,18 @@
 
 		/**
 		 * Given `$needle` this function will call the active Identity field
-		 * to return the entry ID, aka. Member ID, of that entry matching the
+		 * to return the entry ID, aka. member ID, of that entry matching the
 		 * `$needle`.
 		 *
 		 * @param string $needle
 		 * @return integer|null
 		 */
-		public function findMemberIDFromIdentity($needle = null){
+		public function findmemberIDFromIdentity($needle = null){
 			if(is_null($needle)) return null;
 
-			$identity = extension_Members::getField('identity');
+			$identity = extension_members::getField('identity');
 
-			return $identity->fetchMemberIDBy($needle);
+			return $identity->fetchmemberIDBy($needle);
 		}
 
 	/*-------------------------------------------------------------------------
@@ -110,23 +110,23 @@
 		Output:
 	-------------------------------------------------------------------------*/
 
-		public function addMemberDetailsToPageParams(array $context = null) {
+		public function addmemberDetailsToPageParams(array $context = null) {
 			if(!$this->isLoggedIn()) return;
 
-			$this->initialiseMemberObject();
+			$this->initialisememberObject();
 
-			$context['params']['member-id'] = $this->getMemberID();
+			$context['params']['member-id'] = $this->getmemberID();
 
-			if(!is_null(extension_Members::getFieldHandle('role'))) {
-				$role_data = $this->getMember()->getData(extension_Members::getField('role')->get('id'));
+			if(!is_null(extension_members::getFieldHandle('role'))) {
+				$role_data = $this->getmember()->getData(extension_members::getField('role')->get('id'));
 				$role = RoleManager::fetch($role_data['role_id']);
 				if($role instanceof Role) {
 					$context['params']['member-role'] = $role->get('name');
 				}
 			}
 
-			if(!is_null(extension_Members::getFieldHandle('activation'))) {
-				if($this->getMember()->getData(extension_Members::getField('activation')->get('id'), true)->activated != "yes") {
+			if(!is_null(extension_members::getFieldHandle('activation'))) {
+				if($this->getmember()->getData(extension_members::getField('activation')->get('id'), true)->activated != "yes") {
 					$context['params']['member-activated'] = 'no';
 				}
 			}
@@ -138,7 +138,7 @@
 			if($this->isLoggedIn()) {
 				$result->setAttributearray(array(
 					'logged-in' => 'yes',
-					'id' => $this->getMemberID(),
+					'id' => $this->getmemberID(),
 					'result' => 'success'
 				));
 			}
@@ -146,8 +146,8 @@
 				$result->setAttribute('logged-in','no');
 
 				// Append error messages
-				if(is_array(extension_Members::$_errors) && !empty(extension_Members::$_errors)) {
-					foreach(extension_Members::$_errors as $type => $error) {
+				if(is_array(extension_members::$_errors) && !empty(extension_members::$_errors)) {
+					foreach(extension_members::$_errors as $type => $error) {
 						$result->appendChild(
 							new XMLElement($type, null, array(
 								'type' => $error['type'],
@@ -159,7 +159,7 @@
 				}
 
 				// Append post values to simulate a real Symphony event
-				if(extension_Members::$_failed_login_attempt) {
+				if(extension_members::$_failed_login_attempt) {
 					$result->setAttribute('result', 'error');
 
 					$post_values = new XMLElement('post-values');

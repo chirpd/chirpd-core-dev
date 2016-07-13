@@ -1,7 +1,7 @@
 <?php
 
 	/**
-	 * @package data-sources
+	 * @package, data-sources
 	 */
 	/**
 	 * The `SectionDatasource` allows a user to retrieve entries from a given
@@ -462,7 +462,7 @@
 			 * @param array $entries
 			 * @param array $filters
 			 */
-			Symphony::ExtensionManager()->notifyMembers('DataSourceEntriesBuilt', '/frontend/', array(
+			Symphony::ExtensionManager()->notifymembers('DataSourceEntriesBuilt', '/frontend/', array(
 				'datasource' => &$this,
 				'entries' => &$entries,
 				'filters' => $this->dsParamFILTERS

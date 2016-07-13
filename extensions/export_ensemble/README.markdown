@@ -1,7 +1,7 @@
 # Export Ensemble
 
 This extension exports your Symphony website.
-It is part of the Symphony core download package.
+It is part of the Symphony core download package,.
 
 - Version: 2.0.3
 - Author: Symphony Team
@@ -101,4 +101,4 @@ To manually create an ensemble:
 4. Create an archive of the `/install` directory
 5. Share your ensemble
 
-**Note**: If you are using the Members extension, be sure to delete all entries in that section before saving the install files or you may be inadvertently sharing sensitive user information with your ensemble. It's up to you whether you want to share the Git repositories, but be careful that you don't include repositories that include sensitive information. Keep in mind that the workspace and each extension may also include hidden files for managing Git repositories.
+**Note**: If you are using the members extension, be sure to delete all entries in that section before saving the install files or you may be inadvertently sharing sensitive user information with your ensemble. It's up to you whether you want to share the Git repositories, but be careful that you don't include repositories that include sensitive information. Keep in mind that the workspace and each extension may also include hidden files for managing Git repositories.
